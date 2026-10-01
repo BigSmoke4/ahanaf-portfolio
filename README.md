@@ -51,6 +51,19 @@ This portfolio is a modern, interactive single-page application designed to show
 
 ---
 
+## 📸 Screenshots
+
+### Hero Section
+![Hero Section](p1.jpg)
+
+### Projects Section
+![Projects Section](p2.jpg)
+
+### Skills Section
+![Skills Section](p3.jpg)
+
+---
+
 ## 🛠️ Installation & Setup
 
 ### Prerequisites
