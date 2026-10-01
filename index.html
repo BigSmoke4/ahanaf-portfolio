@@ -1,0 +1,2142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>about-ahanaf</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chewy&family=Mansalva&display=swap" rel="stylesheet">
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Loading Screen */
+#loading-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+#loading-screen.hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+#loading-screen button {
+  border: none;
+  position: relative;
+  width: 200px;
+  height: 73px;
+  padding: 0;
+  z-index: 2;
+  background-color: transparent;
+  cursor: default;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' height='868' width='2500' viewBox='0 0 726 252.17'%3E%3Cpath d='M483.92 0S481.38 24.71 466 40.11c-11.74 11.74-24.09 12.66-40.26 15.07-9.42 1.41-29.7 3.77-34.81-.79-2.37-2.11-3-21-3.22-27.62-.21-6.92-1.36-16.52-2.82-18-.75 3.06-2.49 11.53-3.09 13.61S378.49 34.3 378 36a85.13 85.13 0 0 0-30.09 0c-.46-1.67-3.17-11.48-3.77-13.56s-2.34-10.55-3.09-13.61c-1.45 1.45-2.61 11.05-2.82 18-.21 6.67-.84 25.51-3.22 27.62-5.11 4.56-25.38 2.2-34.8.79-16.16-2.47-28.51-3.39-40.21-15.13C244.57 24.71 242 0 242 0H0s69.52 22.74 97.52 68.59c16.56 27.11 14.14 58.49 9.92 74.73C170 140 221.46 140 273 158.57c69.23 24.93 83.2 76.19 90 93.6 6.77-17.41 20.75-68.67 90-93.6 51.54-18.56 103-18.59 165.56-15.25-4.21-16.24-6.63-47.62 9.93-74.73C656.43 22.74 726 0 726 0z'/%3E%3C/svg%3E") no-repeat 50% 50%;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' height='868' width='2500' viewBox='0 0 726 252.17'%3E%3Cpath d='M483.92 0S481.38 24.71 466 40.11c-11.74 11.74-24.09 12.66-40.26 15.07-9.42 1.41-29.7 3.77-34.81-.79-2.37-2.11-3-21-3.22-27.62-.21-6.92-1.36-16.52-2.82-18-.75 3.06-2.49 11.53-3.09 13.61S378.49 34.3 378 36a85.13 85.13 0 0 0-30.09 0c-.46-1.67-3.17-11.48-3.77-13.56s-2.34-10.55-3.09-13.61c-1.45 1.45-2.61 11.05-2.82 18-.21 6.67-.84 25.51-3.22 27.62-5.11 4.56-25.38 2.2-34.8.79-16.16-2.47-28.51-3.39-40.21-15.13C244.57 24.71 242 0 242 0H0s69.52 22.74 97.52 68.59c16.56 27.11 14.14 58.49 9.92 74.73C170 140 221.46 140 273 158.57c69.23 24.93 83.2 76.19 90 93.6 6.77-17.41 20.75-68.67 90-93.6 51.54-18.56 103-18.59 165.56-15.25-4.21-16.24-6.63-47.62 9.93-74.73C656.43 22.74 726 0 726 0z'/%3E%3C/svg%3E") no-repeat 50% 50%;
+  -webkit-mask-size: 100%;
+  mask-size: 100%;
+}
+
+#loading-screen button span {
+  position: absolute;
+  width: 100%;
+  font-size: 15px;
+  font-weight: 100;
+  left: 50%;
+  top: 39%;
+  letter-spacing: 3px;
+  text-align: center;
+  transform: translate(-50%, -50%);
+  color: #000;
+  background: transparent;
+  z-index: 3;
+  pointer-events: none;
+  animation: textFadeOut 2s ease forwards;
+  animation-delay: 0.8s;
+}
+
+#loading-screen button::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  border-radius: 0;
+  opacity: 0;
+  z-index: 2;
+  animation: batFadeIn 1.8s ease forwards;
+  animation-delay: 2.2s;
+}
+
+@keyframes textFadeOut {
+  0% { opacity: 1; color: #000; }
+  100% { opacity: 0; color: transparent; }
+}
+
+@keyframes batFadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+/* Main Content */
+html, body {
+  margin: 0;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  background: #6a4682;
+  touch-action: auto;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  -webkit-user-select: none;
+  font-family: 'Chewy', cursive;
+}
+
+:root {
+  --s: 1;
+  --cx: 50vw;
+  --ox1: 0px;
+  --ox2: 0px;
+  --oy: 0px;
+  --fl: 0px;
+  --fr: 0px;
+  --ft: 0px;
+}
+
+body::before, body::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  background-color: #6a4682;
+  background-image: url(wall.jpg);
+  background-repeat: repeat;
+  background-size: calc(var(--s) * 300px) calc(var(--s) * 1882px);
+  z-index: 0;
+}
+
+body::before {
+  left: 0;
+  width: var(--cx);
+  background-position: var(--ox1) var(--oy);
+}
+
+body::after {
+  left: var(--cx);
+  right: 0;
+  background-position: var(--ox2) var(--oy);
+}
+
+#stage {
+  position: fixed;
+  z-index: 5;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 56.25vw;
+  transition: left 0.5s ease, transform 0.5s ease;
+  pointer-events: none;
+}
+
+#body, #gl, #fallback {
+  pointer-events: auto;
+}
+
+#body {
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 var(--fl), #000 calc(100% - var(--fr)), transparent),
+                      linear-gradient(to bottom, transparent, #000 var(--ft));
+  -webkit-mask-composite: source-in;
+  mask-image: linear-gradient(to right, transparent, #000 var(--fl), #000 calc(100% - var(--fr)), transparent),
+              linear-gradient(to bottom, transparent, #000 var(--ft));
+  mask-composite: intersect;
+}
+
+#body, #gl, #fallback {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  pointer-events: none;
+  user-select: none;
+}
+
+#fallback {
+  display: none;
+  transform-origin: 43.5% 69%;
+}
+
+/* Hero Section */
+#hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  padding-bottom: 80px;
+  z-index: 10;
+}
+
+.hero-text {
+  text-align: center;
+  color: #fff;
+  padding: 20px;
+}
+
+.hero-text h1 {
+  font-family: 'Mansalva', cursive;
+  font-size: clamp(3rem, 8vw, 6rem);
+  margin-bottom: 10px;
+  text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+}
+
+.hero-text p {
+  font-size: clamp(1rem, 2vw, 1.3rem);
+  max-width: 600px;
+  line-height: 1.6;
+  opacity: 0.9;
+}
+
+.scroll-indicator {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  z-index: 100;
+}
+
+.scroll-text {
+  color: #fff;
+  font-size: 1rem;
+  font-family: 'Mansalva', cursive;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  position: relative;
+  padding-bottom: 5px;
+  animation: textPulse 2s infinite;
+}
+
+.scroll-text::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: #fff;
+  transform: scaleX(0);
+  transform-origin: left;
+  animation: underlineMove 2s infinite;
+}
+
+@keyframes textPulse {
+  0%, 100% {
+    opacity: 0.7;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes underlineMove {
+  0% {
+    transform: scaleX(0);
+    transform-origin: left;
+  }
+  50% {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+  51% {
+    transform: scaleX(1);
+    transform-origin: right;
+  }
+  100% {
+    transform: scaleX(0);
+    transform-origin: right;
+  }
+}
+
+/* Contact Icons - Sticky */
+#contact-bar {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+  display: flex;
+  gap: 15px;
+}
+
+/* Sticky Title */
+#sticky-title {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 1000;
+}
+
+.title-text {
+  color: #fff;
+  font-family: 'Mansalva', cursive;
+  font-size: 1.2rem;
+  font-weight: 300;
+  text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+  opacity: 0.9;
+}
+
+.contact-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.3s ease, color 0.3s ease, transform 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  text-decoration: none;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+}
+
+.contact-icon:hover {
+  transform: scale(1.1);
+}
+
+.contact-icon svg {
+  width: 24px;
+  height: 24px;
+}
+
+/* Content Sections */
+.content-wrapper {
+  position: relative;
+  z-index: 10;
+  min-height: 100vh;
+  height: auto;
+  display: flex;
+  align-items: center;
+  padding: 100px 50px;
+  background: transparent;
+  pointer-events: auto;
+}
+
+.section-content {
+  margin-left: 62%;
+  padding-left: 50px;
+  opacity: 1;
+  transform: translateX(0);
+  transition: all 0.8s ease;
+  max-width: 600px;
+  position: relative;
+  z-index: 11;
+  pointer-events: auto;
+}
+
+.section-content.visible {
+  opacity: 1;
+  transform: translateX(0);
+  pointer-events: auto;
+}
+
+.section-title {
+  font-family: 'Mansalva', cursive;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  color: #fff;
+  margin-bottom: 30px;
+  text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+}
+
+.section-text {
+  color: #fff;
+  font-size: clamp(1rem, 1.5vw, 1.2rem);
+  line-height: 1.8;
+  opacity: 0.95;
+}
+
+.section-text ul {
+  list-style: none;
+  padding: 0;
+}
+
+.section-text li {
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.section-text li strong {
+  color: #000000;
+}
+
+/* Skills Grid */
+.skills-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.skill-item {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.3s ease, color 0.3s ease, transform 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  position: relative;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+}
+
+.skill-item:hover {
+  transform: scale(1.1);
+}
+
+.skill-item svg {
+  width: 24px;
+  height: 24px;
+}
+
+/* Contact icon hover colors */
+.contact-icon[href*="linkedin"]:hover { background: #0077b2; }
+.contact-icon[href*="linkedin"]:hover svg { fill: #fff; }
+.contact-icon[href*="linkedin"] svg { fill: #0077b2; }
+
+.contact-icon[href*="github"]:hover { background: #333; }
+.contact-icon[href*="github"]:hover svg { fill: #fff; }
+.contact-icon[href*="github"] svg { fill: #333; }
+
+.contact-icon[href*="mail"]:hover { background: #ea4335; }
+.contact-icon[href*="mail"]:hover svg { fill: #fff; }
+.contact-icon[href*="mail"] svg { fill: #ea4335; }
+
+.contact-icon[href*="discord"]:hover { background: #5865F2; }
+.contact-icon[href*="discord"]:hover svg { fill: #fff; }
+.contact-icon[href*="discord"] svg { fill: #5865F2; }
+
+/* Skill icon hover colors */
+.skill-item[data-skill="C#"]:hover { background: #68217A; }
+.skill-item[data-skill="C#"]:hover svg { fill: #fff; }
+.skill-item[data-skill="C#"] svg { fill: #68217A; }
+
+.skill-item[data-skill="Python"]:hover { background: #3776AB; }
+.skill-item[data-skill="Python"]:hover svg { fill: #fff; }
+.skill-item[data-skill="Python"] svg { fill: #3776AB; }
+
+.skill-item[data-skill="JavaScript"]:hover { background: #F7DF1E; }
+.skill-item[data-skill="JavaScript"]:hover svg { fill: #333; }
+.skill-item[data-skill="JavaScript"] svg { fill: #F7DF1E; }
+
+.skill-item[data-skill="ASP.NET"]:hover { background: #512BD4; }
+.skill-item[data-skill="ASP.NET"]:hover svg { fill: #fff; }
+.skill-item[data-skill="ASP.NET"] svg { fill: #512BD4; }
+
+.skill-item[data-skill="HTML5"]:hover { background: #E34F26; }
+.skill-item[data-skill="HTML5"]:hover svg { fill: #fff; }
+.skill-item[data-skill="HTML5"] svg { fill: #E34F26; }
+
+.skill-item[data-skill="CSS3"]:hover { background: #1572B6; }
+.skill-item[data-skill="CSS3"]:hover svg { fill: #fff; }
+.skill-item[data-skill="CSS3"] svg { fill: #1572B6; }
+
+.skill-item[data-skill="SQL Server"]:hover { background: #CC2927; }
+.skill-item[data-skill="SQL Server"]:hover svg { fill: #fff; }
+.skill-item[data-skill="SQL Server"] svg { fill: #CC2927; }
+
+.skill-item[data-skill="PostgreSQL"]:hover { background: #336791; }
+.skill-item[data-skill="PostgreSQL"]:hover svg { fill: #fff; }
+.skill-item[data-skill="PostgreSQL"] svg { fill: #336791; }
+
+.skill-item[data-skill="Redis"]:hover { background: #DC382D; }
+.skill-item[data-skill="Redis"]:hover svg { fill: #fff; }
+.skill-item[data-skill="Redis"] svg { fill: #DC382D; }
+
+.skill-item[data-skill="Docker"]:hover { background: #2496ED; }
+.skill-item[data-skill="Docker"]:hover svg { fill: #fff; }
+.skill-item[data-skill="Docker"] svg { fill: #2496ED; }
+
+.skill-item[data-skill="Git"]:hover { background: #F05032; }
+.skill-item[data-skill="Git"]:hover svg { fill: #fff; }
+.skill-item[data-skill="Git"] svg { fill: #F05032; }
+
+.skill-item[data-skill="GitHub"]:hover { background: #333; }
+.skill-item[data-skill="GitHub"]:hover svg { fill: #fff; }
+.skill-item[data-skill="GitHub"] svg { fill: #333; }
+
+.skill-item[data-skill="REST API"]:hover { background: #00599C; }
+.skill-item[data-skill="REST API"]:hover svg { fill: #fff; }
+.skill-item[data-skill="REST API"] svg { fill: #00599C; }
+
+.skill-item[data-skill="Entity Framework"]:hover { background: #512BD4; }
+.skill-item[data-skill="Entity Framework"]:hover svg { fill: #fff; }
+.skill-item[data-skill="Entity Framework"] svg { fill: #512BD4; }
+
+.skill-item[data-skill="AI/ML"]:hover { background: #FF6F00; }
+.skill-item[data-skill="AI/ML"]:hover svg { fill: #fff; }
+.skill-item[data-skill="AI/ML"] svg { fill: #FF6F00; }
+
+.skill-name-display {
+  margin-top: 30px;
+  font-family: 'Mansalva', cursive;
+  font-size: 2rem;
+  color: #000000;
+  min-height: 5rem;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.3s ease;
+}
+
+.skill-name-display .skill-name {
+  margin-bottom: 10px;
+}
+
+.skill-name-display.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Animated Skeuomorphic Rating Scale */
+.rating-scale {
+  display: flex;
+  gap: 8px;
+  margin-top: 15px;
+  align-items: center;
+}
+
+.rating-bar-container {
+  width: 100%;
+  max-width: 300px;
+  height: 20px;
+  background: linear-gradient(to bottom, #e0e0e0, #ffffff);
+  border-radius: 10px;
+  box-shadow: 
+    inset 0 2px 4px rgba(0,0,0,0.1),
+    0 2px 4px rgba(0,0,0,0.2);
+  overflow: hidden;
+  position: relative;
+}
+
+.rating-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(to bottom, #000000, #1a1a1a);
+  border-radius: 10px;
+  box-shadow: 
+    inset 0 1px 2px rgba(255,255,255,0.5),
+    0 1px 2px rgba(0,0,0,0.2);
+  transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+}
+
+.rating-bar::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  right: 2px;
+  height: 50%;
+  background: linear-gradient(to bottom, rgba(255,255,255,0.4), transparent);
+  border-radius: 8px 8px 0 0;
+}
+
+.rating-value {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #000000;
+  min-width: 60px;
+  text-align: right;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+}
+
+/* Projects Section */
+#projects-section {
+  position: relative;
+  z-index: 10;
+  min-height: 100vh;
+  padding: 100px 50px;
+  background: transparent;
+  pointer-events: auto;
+}
+
+.projects-container {
+  margin-left: 62%;
+  padding-left: 50px;
+  max-width: 600px;
+  position: relative;
+  z-index: 11;
+  pointer-events: auto;
+}
+
+.project-card {
+  padding: 30px 0;
+  margin-bottom: 50px;
+  opacity: 1;
+  transform: translateX(0);
+  transition: all 0.8s ease;
+}
+
+.project-card.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.project-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.project-name {
+  font-family: 'Mansalva', cursive;
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  color: #fff;
+}
+
+.project-github {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.3s ease, color 0.3s ease, transform 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  text-decoration: none;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+}
+
+.project-github:hover {
+  background: #333;
+  transform: scale(1.1);
+}
+
+.project-github:hover svg {
+  fill: #fff;
+}
+
+.project-github svg {
+  width: 20px;
+  height: 20px;
+  fill: #333;
+}
+
+.project-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  background: rgba(0,0,0,0.3);
+  display: none;
+}
+
+.project-tech {
+  color: #000000;
+  font-size: 0.9rem;
+  margin-bottom: 10px;
+  font-style: italic;
+}
+
+.project-description {
+  color: #fff;
+  font-size: 1rem;
+  line-height: 1.6;
+  opacity: 0.95;
+}
+
+.project-description ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 10px;
+}
+
+.project-description li {
+  padding: 5px 0;
+  padding-left: 20px;
+  position: relative;
+}
+
+.project-description li::before {
+  content: '★';
+  position: absolute;
+  left: 0;
+  top: 2px;
+  color: #FFD700;
+  font-size: 1.2rem;
+  text-shadow: 
+    0 1px 0 #C4A000,
+    0 2px 0 #B89600,
+    0 3px 3px rgba(0,0,0,0.3),
+    0 4px 5px rgba(0,0,0,0.2);
+  filter: drop-shadow(0 2px 2px rgba(0,0,0,0.2));
+}
+
+/* Documents Section */
+.documents-grid {
+  display: flex;
+  gap: 30px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.document-card {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.1);
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255,255,255,0.3);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  color: #fff;
+}
+
+.document-card:hover {
+  background: rgba(255,255,255,0.2);
+  transform: scale(1.1);
+}
+
+.document-card svg {
+  width: 40px;
+  height: 40px;
+  fill: #fff;
+  margin-bottom: 10px;
+}
+
+.document-card span {
+  font-size: 0.8rem;
+  text-align: center;
+}
+
+/* Sticky Documents Bar */
+#documents-bar {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  z-index: 1000;
+  display: flex;
+  gap: 15px;
+}
+
+.document-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.3s ease, color 0.3s ease, transform 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  text-decoration: none;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+}
+
+.document-icon:hover {
+  transform: scale(1.1);
+}
+
+.document-icon svg {
+  width: 24px;
+  height: 24px;
+}
+
+/* Document icon hover colors */
+.document-icon.cv-icon:hover { background: #E74C3C; }
+.document-icon.cv-icon:hover svg { fill: #fff; }
+.document-icon.cv-icon svg { fill: #E74C3C; }
+
+.document-icon[href*="Certificates"]:hover { background: #FFA000; }
+.document-icon[href*="Certificates"]:hover svg { fill: #fff; }
+.document-icon[href*="Certificates"] svg { fill: #FFA000; }
+
+.document-icon[href*="Thesis"]:hover { background: #4CAF50; }
+.document-icon[href*="Thesis"]:hover svg { fill: #fff; }
+.document-icon[href*="Thesis"] svg { fill: #4CAF50; }
+
+/* Character positioning */
+.character-centered {
+  left: 0 !important;
+  transform: translateX(0) !important;
+}
+
+.character-left {
+  left: -40% !important;
+  transform: translateX(0) !important;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  #stage {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 56.25vw;
+  }
+
+  .character-left {
+    left: -40% !important;
+  }
+
+  .content-wrapper {
+    padding: 50px 20px;
+  }
+
+  .section-content {
+    margin-left: 0;
+    padding-left: 0;
+    max-width: 100%;
+  }
+
+  .projects-container {
+    margin-left: 0;
+    padding-left: 0;
+    max-width: 100%;
+  }
+
+  #contact-bar {
+    top: 10px;
+    right: 10px;
+  }
+
+  .contact-icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  #sticky-title {
+    top: 10px;
+    left: 10px;
+  }
+
+  .title-text {
+    font-size: 1rem;
+  }
+
+  .hero-text {
+    padding: 10px;
+  }
+
+  .documents-grid {
+    justify-content: center;
+  }
+
+  #documents-bar {
+    bottom: 10px;
+    left: 10px;
+    gap: 10px;
+  }
+
+  .document-icon {
+    width: 45px;
+    height: 45px;
+  }
+
+  .document-icon svg {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .character-left {
+    left: -50% !important;
+  }
+
+  #contact-bar {
+    gap: 10px;
+  }
+
+  .contact-icon {
+    width: 35px;
+    height: 35px;
+  }
+
+  .contact-icon svg {
+    width: 18px;
+    height: 18px;
+  }
+}
+</style>
+</head>
+<body>
+<!-- Loading Screen -->
+<div id="loading-screen">
+  <button>
+    <span>LOADING.......</span>
+  </button>
+</div>
+
+<!-- Contact Bar -->
+<div id="contact-bar">
+  <a href="https://linkedin.com/in/ahanaf-mokammel-omi-b15764268/" target="_blank" class="contact-icon" title="LinkedIn">
+    <svg viewBox="0 0 24 24">
+      <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+    </svg>
+  </a>
+  <a href="https://github.com/BigSmoke4" target="_blank" class="contact-icon" title="GitHub">
+    <svg viewBox="0 0 24 24">
+      <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+    </svg>
+  </a>
+  <a href="https://mail.google.com/mail/?view=cm&fs=1&to=ahanafmo@gmail.com" target="_blank" class="contact-icon" title="Email">
+    <svg viewBox="0 0 24 24">
+      <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+    </svg>
+  </a>
+  <a href="https://discord.com/users/731001045270134794" target="_blank" class="contact-icon" title="Discord">
+    <svg viewBox="0 0 24 24">
+      <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/>
+    </svg>
+  </a>
+</div>
+
+<!-- Sticky Title -->
+<div id="sticky-title">
+  <span class="title-text">Full-Stack Developer</span>
+</div>
+
+<!-- Character Stage -->
+<div id="stage">
+  <img id="body" src="body.png" alt="">
+  <canvas id="gl"></canvas>
+  <canvas id="fallback"></canvas>
+</div>
+
+<!-- Hero Section -->
+<section id="hero">
+  <div class="hero-text">
+    <h1>Ahanaf</h1>
+    <p>Crafting digital experiences with passion and precision. Building scalable web applications, distributed systems, and AI-powered solutions that make a difference.</p>
+  </div>
+  <div class="scroll-indicator">
+    <span class="scroll-text">Scroll Down</span>
+  </div>
+</section>
+
+<!-- Education Section -->
+<section id="education" class="content-wrapper">
+  <div class="section-content">
+    <h2 class="section-title">Education</h2>
+    <div class="section-text">
+      <ul>
+        <li><strong>B.Sc. in Computer Science</strong> -- BRAC University, Bangladesh (2026)</li>
+        <li><strong>Higher Secondary Certificate</strong> -- Dhaka Residential Model College, Bangladesh (2020)</li>
+        <li><strong>Secondary School Certificate</strong> -- Ibn Taimiya School and College, Bangladesh (2018)</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- Experience Section -->
+<section id="experience" class="content-wrapper">
+  <div class="section-content">
+    <h2 class="section-title">Experience</h2>
+    <div class="section-text">
+      <ul>
+        <li>
+          <strong>Full-Stack Developer</strong> -- Billing Master Software Limited, Bangladesh (2025 -- Present)
+          <br>Built 3+ ASP.NET MVC modules, improving internal processing efficiency by 30%. Implemented scalable CRUD and database features that reduced user-reported errors by 25%. Optimized SQL queries resulting in 20% faster data retrieval.
+        </li>
+        <li>
+          <strong>Executive Member</strong> -- BRAC University Computer Club, Bangladesh (2022 -- 2025)
+          <br>Organized university-wide coding workshops and hackathons with 100+ student participants. Collaborated with the web team to maintain club website and event registration systems.
+        </li>
+        <li>
+          <strong>General Member</strong> -- Dhaka Residential Model College Computer Club, Bangladesh (2018 -- 2020)
+          <br>Participated in intra-school programming competitions and basic web development training sessions.
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- Skills Section -->
+<section id="skills" class="content-wrapper">
+  <div class="section-content">
+    <h2 class="section-title">Skills</h2>
+    <div class="skills-grid">
+      <div class="skill-item" data-skill="C#" title="C#">
+        <svg viewBox="0 0 24 24"><text x="12" y="17" text-anchor="middle" font-size="14" font-weight="bold" fill="#333" font-family="Arial">C#</text></svg>
+      </div>
+      <div class="skill-item" data-skill="Python" title="Python">
+        <svg viewBox="0 0 24 24"><path d="M14.25.18l.9.2.73.26.59.3.45.32.34.34.25.34.16.33.1.3.04.26.02.2-.01.13V8.5l-.05.63-.13.55-.21.46-.26.38-.3.31-.33.25-.35.19-.35.14-.33.1-.3.07-.26.04-.21.02H8.77l-.69.05-.59.14-.5.22-.41.27-.33.32-.27.35-.2.36-.15.37-.1.35-.07.32-.04.27-.02.21v3.06H3.17l-.21-.03-.28-.07-.32-.12-.35-.18-.36-.26-.36-.36-.35-.46-.32-.59-.28-.73-.21-.88-.14-1.05-.05-1.23.06-1.22.16-1.04.24-.87.32-.71.36-.57.4-.44.42-.33.42-.24.4-.17.36-.1.32-.05.24-.01h.16l.06.01h8.16v-.83H6.18l-.01-2.75-.02-.37.05-.34.11-.31.17-.28.25-.26.31-.23.38-.2.44-.18.5-.15.55-.12.6-.1.64-.06.68-.04.71-.02.74.01.76.04.77.07.78.09.79.11.79.14.8.16.79.19.77.21.76.24.74.27.72.29.69.31.66.34.63.36.59.38.55.4.51.42.46.44.42.46.38.48.34.5.3.51.26.52.22.53.18.54.14.55.1.56.07.56.04.57.01h.57l.54-.04.5-.07.45-.1.4-.12.35-.15.3-.17.24-.19.18-.21.13-.23.07-.24.02-.26-.04-.27-.09-.29-.13-.3-.18-.32-.22-.33-.26-.34-.3-.35-.35-.36-.39-.37-.43-.38-.47-.39-.5-.39-.54-.4-.57-.41-.6-.41-.63-.42-.66-.42-.69-.42-.71-.42-.74-.42-.76-.42-.78-.41-.8-.4-.81-.39-.83-.38-.84-.37-.85-.35-.86-.33-.87-.31-.87-.29-.88-.26-.88-.23-.88-.2-.88-.17-.88-.14-.88-.1-.87-.07-.87-.04-.87-.01-.86.02-.85.05-.84.08-.82.1-.8.13-.78.15-.75.17-.73.19-.7.21-.66.23-.63.25-.59.27-.55.28-.51.3-.46.31-.42.33-.37.34-.32.35-.27.36-.22.37-.17.37-.12.38-.07.38-.03.37.01.36.05.35.09.33.13.31.16.28.2.25.23.22.26.18.28.15.3.11.32.08.33.04.34.01.35v3.09h-8.1l-.41.02-.38.07-.35.11-.32.16-.29.2-.26.24-.23.28-.2.31-.16.34-.13.36-.09.38-.06.39-.03.41v.41l.06.39.09.38.13.36.16.34.2.31.23.28.26.24.29.2.32.16.35.11.38.07.41.02h8.1v2.75l.01.37-.05.34-.11.31-.17.28-.25.26-.31.23-.38.2-.44.18-.5.15-.55.12-.6.1-.64.06-.68.04-.71.02-.74-.01-.76-.04-.77-.07-.78-.09-.79-.11-.79-.14-.8-.16-.79-.19-.77-.21-.76-.24-.74-.27-.72-.29-.69-.31-.66-.34-.63-.36-.59-.38-.55-.4-.51-.42-.46-.44-.42-.46-.38-.48-.34-.5-.3-.51-.26-.52-.22-.53-.18-.54-.14-.55-.1-.56-.07-.56-.04-.57-.01-.57.01-.54.04-.5.07-.45.1-.4.12-.35.15-.3.17-.24.19-.18.21-.13.23-.07.24-.02.26.04.27.09.29.13.3.18.32.22.33.26.34.3.35.35.36.39.37.43.38.47.39.5.39.54.4.57.41.6.41.63.42.66.42.69.42.71.42.74.42.76.42.78.41.8.4.81.39.83.38.84.37.85.35.86.33.87.31.87.29.88.26.88.23.88.2.88.17.88.14.88.1.87.07.87.04.87.01.86-.02.85-.05.84-.08.82-.1.8-.13.78-.15.75-.17.73-.19.7-.21.66-.23.63-.25.59-.27.55-.28.51-.3.46-.31.42-.33.37-.34.32-.35.27-.36.22-.37.17-.37.12-.38-.07-.38-.03-.37-.01-.36-.05-.35-.09-.33-.13-.31-.16-.28-.2-.25-.23-.22-.26-.18-.28-.15-.3-.11-.32-.08-.33-.04-.34-.01-.35z"/></svg>
+      </div>
+      <div class="skill-item" data-skill="JavaScript" title="JavaScript">
+        <svg viewBox="0 0 24 24"><path d="M3 3h18v18H3V3zm16.525 13.707c-.131-.821-.666-1.511-2.252-2.155-.552-.259-1.165-.438-1.349-.854-.068-.248-.078-.382-.034-.529.113-.484.687-.629 1.137-.495.293.086.567.283.752.61.796-.534.796-.534 1.355-.884-.203-.314-.305-.457-.446-.537-.375-.406-.877-.614-1.691-.595l-.425.054c-.406.093-.791.273-1.022.521-.673.77-.481 2.111.339 2.665.792.549 1.951.673 2.099 1.186.075.466-.344.613-.779.559-.32-.066-.496-.277-.689-.634l-1.388.812c.16.351.341.507.617.819.667.673 2.33.898 3.308.535.082-.029.243-.085.325-.112l.001-.091zm-6.837-4.372h-1.746c0 1.502-.007 2.997-.007 4.504 0 .954.052 1.828-.105 2.098-.251.521-.898.456-1.19.361-.301-.149-.452-.358-.628-.656-.047-.078-.082-.148-.095-.148l-1.367.842c.229.472.593.879 1.061 1.137.685.362 1.607.478 2.576.274.628-.181 1.171-.554 1.456-1.125.396-.765.312-1.693.309-2.738.009-1.562 0-3.124 0-4.698l.036-.061z"/></svg>
+      </div>
+      <div class="skill-item" data-skill="HTML5" title="HTML5">
+        <svg viewBox="0 0 24 24"><path d="M1.5 0h21l-1.91 21.563L12 24 1.41 21.563 1.5 0zm17.09 4.413L5.41 4.41l.29 3.255h10.75l-.3 3.357-7.15 1.985-7.15-1.985-.48-5.354h13.93l.34-3.755H2.11l.91 10.156 8.99 2.504 8.99-2.504.95-10.523z"/></svg>
+      </div>
+      <div class="skill-item" data-skill="CSS3" title="CSS3">
+        <svg viewBox="0 0 24 24"><path d="M1.5 0h21l-1.91 21.563L12 24 1.41 21.563 1.5 0zm17.09 4.413L5.41 4.41l.29 3.255h10.75l-.3 3.357-7.15 1.985-7.15-1.985-.48-5.354h13.93l.34-3.755H2.11l.91 10.156 8.99 2.504 8.99-2.504.95-10.523z"/></svg>
+      </div>
+      <div class="skill-item" data-skill="ASP.NET Core" title="ASP.NET Core">
+        <svg viewBox="0 0 24 24"><text x="12" y="17" text-anchor="middle" font-size="12" font-weight="bold" fill="#333" font-family="Arial">ASP</text></svg>
+      </div>
+      <div class="skill-item" data-skill="SQL" title="SQL">
+        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-6-8c0-3.31 2.69-6 6-6s6 2.69 6 6-2.69 6-6 6-6-2.69-6-6zm2 0h2v2h-2v-2zm4 0h2v2h-2v-2z"/></svg>
+      </div>
+      <div class="skill-item" data-skill="k6" title="k6">
+        <svg viewBox="0 0 24 24"><path d="M4 4h16v16H4V4zm2 2v12h12V6H6zm3 2h2v8H9V8zm4 0h2v8h-2V8z"/></svg>
+      </div>
+      <div class="skill-item" data-skill="GitHub" title="GitHub">
+        <svg viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+      </div>
+      <div class="skill-item" data-skill="Google Data Studio" title="Google Data Studio">
+        <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 14c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6zm0-10c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4z"/></svg>
+      </div>
+      <div class="skill-item" data-skill="Microsoft 365" title="Microsoft 365">
+        <svg viewBox="0 0 24 24"><path d="M2 2h9v9H2V2zm11 0h9v9h-9V2zM2 13h9v9H2v-9zm11 0h9v9h-9v-9z"/></svg>
+      </div>
+      <div class="skill-item" data-skill="Layered Architecture" title="Layered Architecture">
+        <svg viewBox="0 0 24 24"><path d="M12 2L2 7v10l10 5 10-5V7L12 2zm0 2.18l6.9 3.45L12 11.09 5.1 7.63 12 4.18zM4 8.82l7 3.5v7.36l-7-3.5V8.82zm9 10.86v-7.36l7-3.5v7.36l-7 3.5z"/></svg>
+      </div>
+    </div>
+    <div id="skill-name-display" class="skill-name-display">
+      <div class="skill-name"></div>
+      <div class="rating-scale">
+        <div class="rating-bar-container">
+          <div class="rating-bar"></div>
+        </div>
+        <div class="rating-value"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Projects Section -->
+<section id="projects-section">
+  <div class="projects-container">
+    <h2 class="section-title">Work</h2>
+    
+    <div class="project-card" data-project="1">
+      <div class="project-header">
+        <h3 class="project-name">NEXUS</h3>
+        <a href="https://github.com/BigSmoke4/NEXUS-Supply-Chain-Intelligence-Command-Center" target="_blank" class="project-github" title="View on GitHub">
+          <svg viewBox="0 0 24 24">
+            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+          </svg>
+        </a>
+      </div>
+      <img src="project1.jpg" alt="NEXUS" class="project-image">
+      <p class="project-tech">Technologies: ASP.NET Core MVC, C#, PostgreSQL, Redis, EF Core, Docker</p>
+      <div class="project-description">
+        Supply Chain Intelligence Command Center. Engineered an enterprise supply-chain decision-support platform modeling dependencies as graphs; implemented BFS/DFS traversal, alternate-path discovery, single-point-of-failure detection, bottleneck analysis, and downstream impact propagation.
+        <ul>
+          <li>Built deterministic day-by-day disruption simulation with inventory depletion, stockout-day, service-level, recovery-time, revenue-at-risk, multi-scenario what-if analysis</li>
+          <li>AI specialist orchestration, RBAC, audit logging, SignalR, and Testcontainers</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="project-card" data-project="2">
+      <div class="project-header">
+        <h3 class="project-name">VERITAS</h3>
+        <a href="https://github.com/BigSmoke4/VERITAS" target="_blank" class="project-github" title="View on GitHub">
+          <svg viewBox="0 0 24 24">
+            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+          </svg>
+        </a>
+      </div>
+      <img src="project2.jpg" alt="VERITAS" class="project-image">
+      <p class="project-tech">Technologies: ASP.NET Core, C#, PostgreSQL, Redis, EF Core, Identity</p>
+      <div class="project-description">
+        Enterprise Identity & Access Governance Platform. Built an enterprise IAM and zero-trust authorization platform supporting RBAC, ABAC, deny-by-default policy evaluation, ALLOW/DENY/APPROVAL outcomes, immutable policy versions, risk scoring, and privileged access controls.
+        <ul>
+          <li>Implemented risk-aware MFA workflows using IP, login failure, privileged action, after-hours, and device-trust signals</li>
+          <li>Added JIT access, access reviews, API-key hashing/rotation, and HMAC-SHA256 webhooks</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="project-card" data-project="3">
+      <div class="project-header">
+        <h3 class="project-name">NEURA</h3>
+        <a href="https://github.com/BigSmoke4/NEURA-Neural-AI-Agent-Orchestration-Continuity-Platform" target="_blank" class="project-github" title="View on GitHub">
+          <svg viewBox="0 0 24 24">
+            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+          </svg>
+        </a>
+      </div>
+      <img src="project3.jpg" alt="NEURA" class="project-image">
+      <p class="project-tech">Technologies: ASP.NET Core, C#, PostgreSQL, Redis, SignalR, OpenAI, Anthropic, Google AI</p>
+      <div class="project-description">
+        Neural AI Agent Orchestration & Continuity Platform. Developed a multi-agent orchestration platform maintaining task continuity across AI providers through context monitoring, ContextHandoffPackage generation, validation, automatic handoff, weighted agent routing, and provider abstraction.
+        <ul>
+          <li>Implemented memory, knowledge graphs, real AI adapters, retry/backoff, circuit breakers, rate limiting, encrypted credentials, cost tracking</li>
+          <li>Real-time SignalR/Cytoscape mission visualization</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="project-card" data-project="4">
+      <div class="project-header">
+        <h3 class="project-name">FORGE</h3>
+        <a href="https://github.com/BigSmoke4/FORGE-AI-Software-Engineering-Intelligence-Platform" target="_blank" class="project-github" title="View on GitHub">
+          <svg viewBox="0 0 24 24">
+            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+          </svg>
+        </a>
+      </div>
+      <img src="project4.jpg" alt="FORGE" class="project-image">
+      <p class="project-tech">Technologies: ASP.NET Core, C#, Roslyn, PostgreSQL, EF Core, Git</p>
+      <div class="project-description">
+        AI Software Engineering Intelligence Platform. Engineered a software-engineering intelligence pipeline combining Roslyn semantic analysis, repository indexing, C# symbol extraction, dependency graphs, Git-history mining, and deterministic security/technical-debt analysis.
+        <ul>
+          <li>Implemented deterministic software-risk scoring, security pattern scanning, namespace architecture policies, context retrieval</li>
+          <li>Multi-tenant authZ, audit logging, rate limiting, and modular-boundary enforcement</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="project-card" data-project="5">
+      <div class="project-header">
+        <h3 class="project-name">PULSE</h3>
+        <a href="https://github.com/BigSmoke4/Pulse-Job-Orchestrator" target="_blank" class="project-github" title="View on GitHub">
+          <svg viewBox="0 0 24 24">
+            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+          </svg>
+        </a>
+      </div>
+      <img src="project5.jpg" alt="PULSE" class="project-image">
+      <p class="project-tech">Technologies: ASP.NET Core MVC, C#, RabbitMQ, Redis, SQL Server, EF Core</p>
+      <div class="project-description">
+        Distributed Job Processing & Workflow Platform. Engineered a distributed job-processing modular monolith using RabbitMQ durable priority queues, manual acknowledgements, dead-letter queues, Redis distributed locks, idempotency protection, and worker heartbeats.
+        <ul>
+          <li>Implemented job lifecycle management, failure/retry transitions, exponential backoff, cancellation, scheduled jobs</li>
+          <li>Worker orchestration, queue monitoring, and failure simulation</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="project-card" data-project="6">
+      <div class="project-header">
+        <h3 class="project-name">BDPRICEFINDER</h3>
+        <a href="https://bdpricefinder.com/" target="_blank" class="project-github" title="Visit Website">
+          <svg viewBox="0 0 24 24">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+          </svg>
+        </a>
+      </div>
+      <img src="project6.jpg" alt="BDPRICEFINDER" class="project-image">
+      <p class="project-tech">Technologies: ASP.NET MVC, Razor Views, C#, HTML, CSS, JavaScript, SQL Server</p>
+      <div class="project-description">
+        Multi-Vendor E-Commerce Platform. Developed a full-stack Bangladesh multi-vendor price-comparison marketplace supporting buyers, sellers, and vendors through role-specific dashboards, product/vendor workflows, approval processes, and hierarchical permissions.
+        <ul>
+          <li>Implemented product lifecycle management, dynamic variants, inventory/order management, 2-step email OTP auth</li>
+          <li>Coupons, EMI, warranty, Elasticsearch search, Redis caching, and vendor-aware marketplace functionality</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="project-card" data-project="7">
+      <div class="project-header">
+        <h3 class="project-name">LOCAL AGENT</h3>
+        <a href="https://github.com/BigSmoke4/Local-Agent-Platform" target="_blank" class="project-github" title="View on GitHub">
+          <svg viewBox="0 0 24 24">
+            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+          </svg>
+        </a>
+      </div>
+      <img src="project7.jpg" alt="LOCAL AGENT" class="project-image">
+      <p class="project-tech">Technologies: ASP.NET Core, C#, PostgreSQL, EF Core, Ollama, Roslyn, SignalR</p>
+      <div class="project-description">
+        Local-First Autonomous Coding Platform. Built a local-first autonomous software-engineering agent platform with persistent sessions, model-driven DAG task planning, dependency validation, fan-out/fan-in execution, retry budgets, and verification loops.
+        <ul>
+          <li>Implemented SHA-256 incremental repository indexing, Roslyn symbol extraction, cross-file reference graphs, context selection</li>
+          <li>Layered short/long-term memory with semantic and lexical retrieval</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="project-card" data-project="8">
+      <div class="project-header">
+        <h3 class="project-name">ATLAS</h3>
+        <a href="https://github.com/BigSmoke4/ATLAS-Enterprise-Intelligent-API-Event-Platform" target="_blank" class="project-github" title="View on GitHub">
+          <svg viewBox="0 0 24 24">
+            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+          </svg>
+        </a>
+      </div>
+      <img src="project8.jpg" alt="ATLAS" class="project-image">
+      <p class="project-tech">Technologies: ASP.NET Core, C#, PostgreSQL, Redis, Kafka, OpenTelemetry</p>
+      <div class="project-description">
+        Enterprise Intelligent API & Event Platform. Engineered a modular enterprise platform combining API management, service registry, traffic routing, Kafka event processing, retries, DLQ/replay, Redis Lua rate limiting, circuit breakers, and tenant authorization.
+        <ul>
+          <li>Implemented OpenTelemetry-based SLO/error-budget analysis, health probing, incident state management</li>
+          <li>Deployment regression analysis, and audit/security controls</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="project-card" data-project="9">
+      <div class="project-header">
+        <h3 class="project-name">AURORA</h3>
+        <a href="https://github.com/BigSmoke4/AURORA-Autonomous-Unified-Reasoning-Organizational-Resilience-Architecture" target="_blank" class="project-github" title="View on GitHub">
+          <svg viewBox="0 0 24 24">
+            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+          </svg>
+        </a>
+      </div>
+      <img src="project9.jpg" alt="AURORA" class="project-image">
+      <p class="project-tech">Technologies: ASP.NET Core MVC, C#, PostgreSQL, EF Core, SignalR</p>
+      <div class="project-description">
+        Organizational Resilience & Decision Intelligence Architecture. Developed an enterprise digital-twin platform modeling organizational assets through graph intelligence; implemented BFS/DFS, Dijkstra, upstream/downstream propagation, SPOF, and bottleneck scoring with disruption simulation.
+        <ul>
+          <li>Added weighted risk scoring, AI investigation, human-in-the-loop approvals, audit trails, multi-tenancy</li>
+          <li>SignalR visualization while explicitly separating implemented functionality from planned RAG and multi-agent features</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="project-card" data-project="10">
+      <div class="project-header">
+        <h3 class="project-name">SENTINEL</h3>
+        <a href="https://github.com/BigSmoke4/sentinel-risk-simulator" target="_blank" class="project-github" title="View on GitHub">
+          <svg viewBox="0 0 24 24">
+            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+          </svg>
+        </a>
+      </div>
+      <img src="project10.jpg" alt="SENTINEL" class="project-image">
+      <p class="project-tech">Technologies: ASP.NET Core MVC, C#, PostgreSQL, Redis</p>
+      <div class="project-description">
+        Enterprise Operational Risk & Resilience Simulator. Built an operational-risk simulation platform using dependency graphs, BFS/DFS traversal, single-point-of-failure detection, critical-path analysis, weighted failure propagation, and business-impact modeling.
+        <ul>
+          <li>Implemented genuine Monte Carlo simulation using normal/log-normal sampling, recovery-strategy weighted scoring</li>
+          <li>Resilience metrics, risk heatmaps, background jobs, and interactive graph visualization</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="project-card" data-project="11">
+      <div class="project-header">
+        <h3 class="project-name">AEGIS</h3>
+        <a href="https://github.com/BigSmoke4/Aegis-Intelligent-Incident-Response-Digital-Operations-Platform" target="_blank" class="project-github" title="View on GitHub">
+          <svg viewBox="0 0 24 24">
+            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+          </svg>
+        </a>
+      </div>
+      <img src="project11.jpg" alt="AEGIS" class="project-image">
+      <p class="project-tech">Technologies: ASP.NET Core MVC, C#, PostgreSQL, Redis</p>
+      <div class="project-description">
+        Intelligent Incident Response & Digital Operations Platform. Developed an SRE/AIOps platform with a synthetic infrastructure digital twin implementing the Failure → Detection → Correlation → Root Cause → Impact → Remediation pipeline.
+        <ul>
+          <li>Implemented rolling z-score anomaly detection, graph-based incident correlation, weighted root-cause ranking</li>
+          <li>Synthetic business-impact analysis, and human-approved remediation runbooks</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="project-card" data-project="12">
+      <div class="project-header">
+        <h3 class="project-name">NIRBHOR</h3>
+        <a href="https://github.com/BigSmoke4/NIRBHOR-Bilingual-AI-Personal-Administrative-Agent" target="_blank" class="project-github" title="View on GitHub">
+          <svg viewBox="0 0 24 24">
+            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+          </svg>
+        </a>
+      </div>
+      <img src="project12.jpg" alt="NIRBHOR" class="project-image">
+      <p class="project-tech">Technologies: ASP.NET Core MVC, C#, PostgreSQL, EF Core, Identity, SignalR, Anthropic</p>
+      <div class="project-description">
+        Bilingual AI Personal Administrative Agent. Built a bilingual AI administrative agent supporting English, Bangla, and mixed-language workflows for tasks such as NID correction and passport renewal through conversation, language understanding, and tool execution.
+        <ul>
+          <li>Implemented versioned prompt management, multilingual evaluation datasets, accuracy-gated evaluation, audit logging</li>
+          <li>Notifications, cost tracking, OpenTelemetry, and secure Identity workflows</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="project-card" data-project="13">
+      <div class="project-header">
+        <h3 class="project-name">E-COMMERCE</h3>
+        <a href="https://github.com/BigSmoke4/Responsive-Ecommerce-asp.net-MVC-razor-view" target="_blank" class="project-github" title="View on GitHub">
+          <svg viewBox="0 0 24 24">
+            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+          </svg>
+        </a>
+      </div>
+      <img src="project13.jpg" alt="E-COMMERCE" class="project-image">
+      <p class="project-tech">Technologies: ASP.NET MVC, C#, Razor Views, Entity Framework, SQL Server</p>
+      <div class="project-description">
+        ASP.NET MVC/Razor Web Application. Developed a responsive database-driven e-commerce application using ASP.NET MVC and Razor with separated Controllers, Models, Services, and Views, supporting product management and shopping-cart functionality.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Documents Section - Hidden from main content -->
+<section id="documents" class="content-wrapper" style="display: none;">
+  <div class="section-content">
+    <h2 class="section-title">Documents</h2>
+    <div class="documents-grid">
+      <a href="#" class="document-card" title="CV">
+        <svg viewBox="0 0 100 100">
+          <circle cx="50" cy="50" r="45" fill="url(#cvGrad)" filter="url(#cvShadow)" stroke="#8b1a15" stroke-width="4"/>
+          <circle cx="50" cy="50" r="40" fill="url(#cvHighlight)" filter="url(#cvInnerShadow)" stroke="none"/>
+          <text x="50" y="60" text-anchor="middle" font-size="30" font-weight="bold" fill="#fff" font-family="Arial" style="text-shadow: 2px 2px 4px rgba(0,0,0,0.4);">CV</text>
+        </svg>
+        <span>CV</span>
+      </a>
+      <a href="#" class="document-card" title="Certificates">
+        <svg viewBox="0 0 100 100">
+          <circle cx="50" cy="50" r="45" fill="url(#certGrad)" filter="url(#certShadow)" stroke="#7a5500" stroke-width="4"/>
+          <circle cx="50" cy="50" r="40" fill="url(#certHighlight)" filter="url(#certInnerShadow)" stroke="none"/>
+          <text x="50" y="60" text-anchor="middle" font-size="28" font-weight="bold" fill="#fff" font-family="Arial" style="text-shadow: 2px 2px 4px rgba(0,0,0,0.4);">✓</text>
+        </svg>
+        <span>Certificates</span>
+      </a>
+      <a href="#" class="document-card" title="Research Papers">
+        <svg viewBox="0 0 100 100">
+          <circle cx="50" cy="50" r="45" fill="url(#researchGrad)" filter="url(#researchShadow)" stroke="#1b5e20" stroke-width="4"/>
+          <circle cx="50" cy="50" r="40" fill="url(#researchHighlight)" filter="url(#researchInnerShadow)" stroke="none"/>
+          <text x="50" y="60" text-anchor="middle" font-size="30" font-weight="bold" fill="#fff" font-family="Arial" style="text-shadow: 2px 2px 4px rgba(0,0,0,0.4);">R</text>
+        </svg>
+        <span>Research</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Sticky Documents Bar -->
+<div id="documents-bar">
+  <a href="Ahanaf_Mokammel_Omi_Curriculum_Vitae.pdf" download class="document-icon cv-icon" title="CV">
+    <svg viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
+  </a>
+  <a href="Certificates.pdf" download class="document-icon" title="Certificates">
+    <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg>
+  </a>
+  <a href="Thesis Paper.pdf" download class="document-icon" title="Research Papers">
+    <svg viewBox="0 0 24 24"><path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 4h5v8l-2.5-1.5L6 12V4z"/></svg>
+  </a>
+</div>
+
+<script src="assets.js"></script>
+<script>
+(() => {
+  // Loading Screen
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      document.getElementById('loading-screen').classList.add('hidden');
+    }, 3500);
+  });
+
+  /* All geometry below is in the 1672x941 coordinates of the original art. */
+  const ART_W = 1672, ART_H = 941;
+  const HEAD_BOX = { x: 204, y: 25, w: 903, h: 674 };
+  const LIDS = {
+    A: { x: 591, y: 312, w: 192, h: 112, k: -0.3333, u0: 21.0, u1: 106.0 },
+    B: { x: 770, y: 297, w: 173, h:  94, k: -0.0336, u0:  5.0, u1:  88.7 },
+  };
+  const NECK   = [728, 650];
+  const SKULL  = { cx: 735, cy: 420, rx: 330, ry: 330, rz: 300 };
+  const PERSP  = 2200;
+
+  const MAX_YAW = 11, MAX_PITCH_UP = 6.5, MAX_PITCH_DOWN = 5;
+  const NECK_TOP = 360, NECK_BASE = 700;
+  const BODY_CX = 729;
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const stage  = document.getElementById('stage');
+  const canvas = document.getElementById('gl');
+  const rad = d => d * Math.PI / 180;
+
+  function layout() {
+    const vw = innerWidth, vh = innerHeight;
+    const s = Math.min(vw / 1100, vh / ART_H);
+    const w = ART_W * s, h = ART_H * s;
+    let left = vw / 2 - BODY_CX * s;
+    if (w >= vw) left = Math.min(0, Math.max(vw - w, left));
+    const top = vh - h;
+    stage.style.cssText = `left:${left}px;top:${top}px;width:${w}px;height:${h}px`;
+    const root = document.documentElement.style;
+    root.setProperty('--s', s);
+    root.setProperty('--fl', left > 0.5 ? 70 * s + 'px' : '0px');
+    root.setProperty('--fr', left + w < vw - 0.5 ? 70 * s + 'px' : '0px');
+    root.setProperty('--ft', top > 0.5 ? 90 * s + 'px' : '0px');
+    const cx = Math.min(vw, Math.max(0, left + w / 2));
+    root.setProperty('--cx', cx + 'px');
+    root.setProperty('--ox1', (left + 118 * s) + 'px');
+    root.setProperty('--ox2', (left + 1234 * s - cx) + 'px');
+    root.setProperty('--oy', top + 'px');
+  }
+  layout();
+  addEventListener('resize', layout);
+
+  const load = src => new Promise((res, rej) => { const i = new Image(); i.onload = () => res(i); i.onerror = rej; i.src = src; });
+
+  function smoothDamp(cur, target, vel, smoothTime, maxSpeed, dt) {
+    const om = 2 / smoothTime, x = om * dt;
+    const e = 1 / (1 + x + 0.48 * x * x + 0.235 * x * x * x);
+    const maxChange = maxSpeed * smoothTime;
+    let change = Math.max(-maxChange, Math.min(maxChange, cur - target));
+    const t = cur - change;
+    const tmp = (vel + om * change) * dt;
+    vel = (vel - om * tmp) * e;
+    let out = t + (change + tmp) * e;
+    if ((target - cur > 0) === (out > target)) { out = target; vel = 0; }
+    return [out, vel];
+  }
+
+  const S = {
+    rawX: 0, rawY: 0,
+    gx: 0, gy: 0, gvx: 0, gvy: 0,
+    yaw: 0, pitch: 0, roll: 0, yv: 0, pv: 0, rv: 0,
+    hx: 0, hy: 0,
+    egx: 0, egy: 0, evx: 0, evy: 0,
+    sacX: 0, sacY: 0, sacNext: 0,
+    lastMove: performance.now(),
+  };
+
+  function aim(cx, cy) {
+    const r = stage.getBoundingClientRect();
+    const fx = r.left + r.width * (735 / ART_W), fy = r.top + r.height * (380 / ART_H);
+    const nx = (cx - fx) / (innerWidth * 0.5), ny = (cy - fy) / (innerHeight * 0.5);
+    S.rawX = Math.tanh(nx * 1.1);
+    S.rawY = Math.tanh(ny * 1.1);
+    S.lastMove = performance.now();
+  }
+  addEventListener('pointermove', e => aim(e.clientX, e.clientY), { passive: true });
+  document.addEventListener('mouseleave', () => { S.rawX = 0; S.rawY = 0; });
+
+  const CLOSE = 85, HOLD = 40, OPEN = 140;
+  const ease = t => t * t * (3 - 2 * t);
+  const blinkAmount = t => t < 0 ? 0 : t < CLOSE ? ease(t / CLOSE) : t < CLOSE + HOLD ? 1
+                         : t < CLOSE + HOLD + OPEN ? 1 - ease((t - CLOSE - HOLD) / OPEN) : 0;
+  const blink = { start: -1, next: performance.now() + 1500, double: false, lastEnd: 0 };
+  function startBlink(now) { if (blink.start < 0) blink.start = now; }
+  function endBlink(now) {
+    blink.start = -1; blink.lastEnd = now;
+    if (blink.double) { blink.double = false; blink.next = now + 90; return; }
+    blink.next = now + 2200 + Math.random() * 3500;
+    blink.double = Math.random() < 0.15;
+  }
+  function paintLid(L, p) {
+    const ctx = L.ctx, w = L.cv.width, h = L.cv.height, cx = w / 2, k = L.k;
+    const edge = L.u0 - 2 + p * (L.u1 - 8 - L.u0 + 2);
+    ctx.globalCompositeOperation = 'source-over';
+    ctx.clearRect(0, 0, w, h);
+    ctx.drawImage(L.img, 0, 0);
+    ctx.globalCompositeOperation = 'destination-in';
+    ctx.beginPath();
+    ctx.moveTo(-10, -10); ctx.lineTo(w + 10, -10);
+    ctx.lineTo(w + 10, edge + k * (w + 10 - cx)); ctx.lineTo(-10, edge + k * (-10 - cx));
+    ctx.closePath(); ctx.fillStyle = '#000'; ctx.fill();
+    ctx.globalCompositeOperation = 'source-atop';
+    ctx.strokeStyle = `rgba(22,14,12,${Math.min(1, 0.35 + p)})`;
+    ctx.lineWidth = 4; ctx.lineCap = 'round';
+    ctx.beginPath();
+    ctx.moveTo(-6, edge + k * (-6 - cx)); ctx.lineTo(w + 6, edge + k * (w + 6 - cx)); ctx.stroke();
+    ctx.globalCompositeOperation = 'source-over';
+  }
+
+  function step(now, dt) {
+    const idle = (now - S.lastMove) / 1000;
+    const attention = idle < 5 ? 1 : Math.max(0, 1 - (idle - 5) / 4);
+    if (Math.hypot(S.rawX - S.hx, S.rawY - S.hy) > 0.035) { S.hx = S.rawX; S.hy = S.rawY; }
+    const tx = S.hx * attention, ty = S.hy * attention;
+
+    [S.gx, S.gvx] = smoothDamp(S.gx, tx, S.gvx, 0.16, 9, dt);
+    [S.gy, S.gvy] = smoothDamp(S.gy, ty, S.gvy, 0.16, 9, dt);
+
+    const yawT = S.gx * MAX_YAW;
+    const pitchT = -(S.gy < 0 ? S.gy * MAX_PITCH_UP : S.gy * MAX_PITCH_DOWN);
+    [S.yaw, S.yv]     = smoothDamp(S.yaw, yawT, S.yv, 0.40, 28, dt);
+    [S.pitch, S.pv]   = smoothDamp(S.pitch, pitchT, S.pv, 0.48, 20, dt);
+    [S.roll, S.rv]    = smoothDamp(S.roll, S.yaw * 0.16 - S.pitch * 0.05, S.rv, 0.60, 12, dt);
+
+    if (now > S.sacNext) { S.sacX = (Math.random() - 0.5) * 0.14; S.sacY = (Math.random() - 0.5) * 0.10; S.sacNext = now + 700 + Math.random() * 1800; }
+    const hnx = S.yaw / MAX_YAW, hny = S.pitch >= 0 ? -S.pitch / MAX_PITCH_UP : -S.pitch / MAX_PITCH_DOWN;
+    const clamp1 = v => Math.max(-1, Math.min(1, v));
+    const etx = clamp1(tx * 0.85 + (tx - hnx) * 0.55 + S.sacX), ety = clamp1(ty * 0.85 + (ty - hny) * 0.55 + S.sacY);
+    [S.egx, S.evx] = smoothDamp(S.egx, etx, S.evx, 0.07, 14, dt);
+    [S.egy, S.evy] = smoothDamp(S.egy, ety, S.evy, 0.08, 14, dt);
+
+    const speed = Math.hypot(S.yv, S.pv);
+    if (speed > 26 && blink.start < 0 && now - blink.lastEnd > 1500 && Math.random() < 0.03) startBlink(now);
+
+    const t = now / 1000;
+    const swayYaw = 0.45 * Math.sin(t * 0.37) + 0.25 * Math.sin(t * 0.91 + 1.3);
+    const swayPitch = 0.30 * Math.sin(t * 0.53 + 0.7);
+    return [S.yaw + swayYaw, S.pitch + swayPitch, S.roll + 0.25 * Math.sin(t * 0.43 + 2.1)];
+  }
+
+  function stepBlink(now) {
+    if (reduce) return 0;
+    if (blink.start < 0 && now >= blink.next) startBlink(now);
+    if (blink.start < 0) return 0;
+    const t = now - blink.start;
+    if (t > CLOSE + HOLD + OPEN) { endBlink(now); return 0; }
+    return blinkAmount(t);
+  }
+
+  const NOSE  = { x: 809, y: 410, r: 62 };
+  const MOUTH = { x: 810.5, y: 534.65, k: -0.18607, L: 46 };
+  const JAW_MAX = 15;
+  const TBOX  = { x: 690, y: 490, w: 240, h: 200 };
+  const TS = 3;
+  const TONGUE_LEN = 86, TONGUE_ANG = 0.07;
+  const T_HOLD = 1000;
+  const T = window.__tongue = { pending: 0, phase: 'idle', hold0: 0, gap0: 0, jaw: 0, jv: 0, ext: 0, ev: 0, jt: 0, et: 0, cv: null, ctx: null, shown: -1, P: null, drag: null, acc: 0, hv: null };
+  const smooth01 = (a, b, x) => { const t = Math.max(0, Math.min(1, (x - a) / (b - a))); return t * t * (3 - 2 * t); };
+  const lineY = x => MOUTH.y + MOUTH.k * (x - MOUTH.x);
+  const jawShape = x => { const a = Math.min(1, Math.abs(x - MOUTH.x) / MOUTH.L); return Math.pow(1 - a * a, 0.6); };
+  const SS = 2;
+  let pose = { yaw: 0, pitch: 0, roll: 0 };
+
+  function projectArt(ax, ay) {
+    const q = [(ax - SKULL.cx) / SKULL.rx, (ay - SKULL.cy) / SKULL.ry];
+    const sh = Math.sqrt(Math.max(1 - (q[0] * q[0] + q[1] * q[1]), 0));
+    let px = ax - NECK[0], py = ay - NECK[1], pz = SKULL.rz * (0.1 + 0.9 * sh), t;
+    const cy = Math.cos(rad(pose.yaw)), sy = Math.sin(rad(pose.yaw));
+    t = px; px = t * cy + pz * sy; pz = -t * sy + pz * cy;
+    const cp = Math.cos(rad(pose.pitch)), sp = Math.sin(rad(pose.pitch));
+    t = py; py = t * cp - pz * sp; pz = t * sp + pz * cp;
+    const cr = Math.cos(rad(pose.roll)), sr = Math.sin(rad(pose.roll));
+    t = px; px = t * cr - py * sr; py = t * sr + py * cr;
+    const k = PERSP / (PERSP - pz);
+    const tx = NECK[0] + px * k, ty = NECK[1] + py * k;
+    const w = 1 - smooth01(NECK_TOP, NECK_BASE, ay);
+    return [ax + (tx - ax) * w, ay + (ty - ay) * w];
+  }
+  function overNose(cx, cy, touch) {
+    const r = stage.getBoundingClientRect(), k = r.width / ART_W;
+    const [ax, ay] = projectArt(NOSE.x, NOSE.y);
+    const rad_ = Math.max(NOSE.r * k, touch ? 34 : 0) + (touch ? 8 : 0);
+    return Math.hypot(cx - (r.left + ax * k), cy - (r.top + ay * k)) <= rad_;
+  }
+  function poke() { T.pending++; }
+
+  function stepTongue(now, dt) {
+    const P = T.phase;
+    if (P === 'idle')       { if (T.pending > 0) { T.pending--; T.phase = 'open'; T.jt = 1; } }
+    else if (P === 'open')  { if (T.jaw > 0.6) { T.phase = 'out'; T.et = 1; } }
+    else if (P === 'out')   { if (T.ext > 0.985) { T.phase = 'hold'; T.hold0 = now; } }
+    else if (P === 'hold')  { if (T.drag) T.hold0 = now; else if (now - T.hold0 >= T_HOLD) { T.phase = 'in'; T.et = 0; } }
+    else if (P === 'in')    { if (T.ext < 0.012) { T.ext = 0; T.ev = 0; T.phase = 'gap'; T.gap0 = now; } }
+    else if (P === 'gap')   { if (now - T.gap0 >= 110) {
+                                if (T.pending > 0) { T.pending--; T.phase = 'out'; T.et = 1; } else { T.phase = 'close'; T.jt = 0; } } }
+    else if (P === 'close') { if (T.pending > 0) { T.pending--; T.phase = 'open'; T.jt = 1; }
+                              else if (T.jaw < 0.004) { T.jaw = 0; T.jv = 0; T.phase = 'idle'; } }
+    [T.jaw, T.jv] = smoothDamp(T.jaw, T.jt, T.jv, 0.10, 9, dt);
+    [T.ext, T.ev] = smoothDamp(T.ext, T.et, T.ev, 0.11, 6.5, dt);
+    tonguePhysics(now, dt);
+    return T;
+  }
+
+  const rng = (() => { let a = 12345; return () => (a = (a * 1664525 + 1013904223) >>> 0) / 4294967296; })();
+  const HAIRS = Array.from({ length: 70 }, () => ({ u: rng() * 2 - 1, len: 2 + rng() * 3.2, tilt: (rng() - 0.5) * 3.4, tone: rng() }));
+  const DOTS = Array.from({ length: 560 }, () => ({ u: 0.04 + rng() * 0.95, v: rng() + rng() - 1, r: 0.5 + rng() * 0.45, red: rng() < 0.16 }));
+
+  const TN = 14, TBACK = 8, TM = 72;
+  const T_G = 800, T_H = 1 / 120;
+  const rootPt = () => [MOUTH.x, lineY(MOUTH.x) + 0.5];
+  function tongueDims(ext) {
+    const len = TONGUE_LEN * ext + 3, wf = 0.62 + 0.38 * smooth01(0.08, 0.55, ext);
+    return { len, mw: 26 * wf, bw: 16 * wf };
+  }
+  function hwAtY(y, len, mw, bw) {
+    const tr = Math.min(len, mw * 1.12), yt = len - tr;
+    if (y < yt) return bw + (mw - bw) * smooth01(0, Math.max(yt * 0.85, 1), y);
+    return mw * Math.sqrt(Math.max(0, 1 - Math.pow((y - yt) / tr, 2)));
+  }
+  const screenToArt = (cx, cy) => { const r = stage.getBoundingClientRect(), k = r.width / ART_W; return [(cx - r.left) / k, (cy - r.top) / k]; };
+  function unproject(ax, ay) {
+    let lx = ax, ly = ay;
+    for (let i = 0; i < 6; i++) { const [px, py] = projectArt(lx, ly); lx += ax - px; ly += ay - py; }
+    return [lx, ly];
+  }
+
+  function tongueStep(h, root, seg, dx, dy, ix, iy, tgt, g, len, mw, bw) {
+    const P = T.P, damp = Math.exp(-1.5 * h);
+    P[0].x = P[0].px = root[0]; P[0].y = P[0].py = root[1];
+    let ux = 0, uy = 0;
+    if (g) { ux = P[g].x - P[g - 1].x; uy = P[g].y - P[g - 1].y; const m = Math.hypot(ux, uy) || 1; ux /= m; uy /= m; }
+    for (let i = 1; i < TN; i++) {
+      if (i === g) continue;
+      const p = P[i], k = (300 - 200 * (i / (TN - 1))) * (1 + 3 * Math.abs(T.ev));
+      const rx = g && i > g ? P[g].x + ux * seg * (i - g) : root[0] + dx * seg * i, ry = g && i > g ? P[g].y + uy * seg * (i - g) : root[1] + dy * seg * i;
+      const ax = (rx - p.x) * k + ix, ay = (ry - p.y) * k + T_G + iy;
+      let vx = (p.x - p.px) * damp, vy = (p.y - p.py) * damp;
+      const m = Math.hypot(vx, vy); if (m > 12) { vx *= 12 / m; vy *= 12 / m; }
+      p.px = p.x; p.py = p.y; p.x += vx + ax * h * h; p.y += vy + ay * h * h;
+    }
+    if (g) {
+      const p = P[g]; let tx = tgt[0] - root[0], ty = tgt[1] - root[1];
+      const d = Math.hypot(tx, ty), mx = seg * g; if (d > mx) { tx *= mx / d; ty *= mx / d; }
+      const f = 1 - Math.exp(-h * 45);
+      p.px = p.x; p.py = p.y; p.x += (root[0] + tx - p.x) * f; p.y += (root[1] + ty - p.y) * f;
+    }
+    for (let it = 0; it < 16; it++) {
+      for (let n = 0; n < TN - 1; n++) {
+        const a = it & 1 ? TN - 2 - n : n, A = P[a], B = P[a + 1];
+        const ddx = B.x - A.x, ddy = B.y - A.y, d = Math.hypot(ddx, ddy) || 1e-6, diff = (d - seg) / d;
+        const wa = a === 0 || a === g ? 0 : 1, wb = a + 1 === g ? 0 : 1, ws = wa + wb;
+        if (!ws) continue;
+        A.x += ddx * diff * wa / ws; A.y += ddy * diff * wa / ws; B.x -= ddx * diff * wb / ws; B.y -= ddy * diff * wb / ws;
+      }
+    }
+    for (let i = 1; i < TN - 1; i++) {
+      const A = P[i - 1], B = P[i + 1], ddx = B.x - A.x, ddy = B.y - A.y, d = Math.hypot(ddx, ddy) || 1e-6, mn = seg * 1.99;
+      if (d >= mn) continue;
+      const wa = i - 1 === 0 || i - 1 === g ? 0 : 1, wb = i + 1 === g ? 0 : 1, ws = wa + wb, diff = (d - mn) / d;
+      if (!ws) continue;
+      A.x += ddx * diff * wa / ws; A.y += ddy * diff * wa / ws; B.x -= ddx * diff * wb / ws; B.y -= ddy * diff * wb / ws;
+    }
+    for (let i = 1; i < TN; i++) {
+      const p = P[i], minY = lineY(p.x) + Math.min(0.55 * hwAtY(i * seg, len, mw, bw), seg * i * 0.8);
+      if (p.y < minY) p.y = minY;
+    }
+  }
+  function tonguePhysics(now, dt) {
+    if (!(T.ext > 0.003 && T.jaw > 0.001)) { T.P = null; if (T.drag) endDrag(); return; }
+    const { len, mw, bw } = tongueDims(T.ext), seg = len / (TN - 1), root = rootPt();
+    const ang = TONGUE_ANG + 0.028 * Math.sin(now / 470) * T.ext, dx = -Math.sin(ang), dy = Math.cos(ang);
+    if (!T.P) { T.P = Array.from({ length: TN }, (_, i) => { const x = root[0] + dx * seg * i, y = root[1] + dy * seg * i; return { x, y, px: x, py: y }; }); T.hv = null; T.acc = 0; }
+    const hvx = rad(S.yv) * 270, hvy = -rad(S.pv) * 270, cl = v => Math.max(-2500, Math.min(2500, v));
+    const ix = T.hv ? cl(-(hvx - T.hv[0]) / dt) * 0.8 : 0, iy = T.hv ? cl(-(hvy - T.hv[1]) / dt) * 0.8 : 0;
+    T.hv = [hvx, hvy];
+    let tgt = null, g = 0;
+    if (T.drag) { const [ax, ay] = screenToArt(T.drag.sx, T.drag.sy), l = unproject(ax, ay); tgt = [l[0] + T.drag.ox, l[1] + T.drag.oy]; g = Math.min(T.drag.i, TN - 1);
+      const dc = Math.hypot(tgt[0] - root[0], tgt[1] - root[1]);
+      T.et = Math.max(0.12, Math.min(1, (dc / 0.8 * (TN - 1) / g - 3) / TONGUE_LEN));
+    }
+    T.acc += dt;
+    for (let n = 0; T.acc >= T_H && n < 5; n++) { T.acc -= T_H; tongueStep(T_H, root, seg, dx, dy, ix, iy, tgt, g, len, mw, bw); }
+    if (T.acc > T_H) T.acc = 0;
+  }
+
+  function tongueAt(cx, cy, touch) {
+    const P = T.P; if (!P || T.ext < 0.6 || T.jaw < 0.5) return -1;
+    const [ax, ay] = screenToArt(cx, cy), [lx, ly] = unproject(ax, ay);
+    const { len, mw, bw } = tongueDims(T.ext), seg = len / (TN - 1), k = stage.getBoundingClientRect().width / ART_W, extra = (touch ? 26 : 6) / k;
+    let best = -1, bd = 1e9;
+    for (let i = 1; i < TN; i++) {
+      const A = P[i - 1], B = P[i], vx = B.x - A.x, vy = B.y - A.y, l2 = vx * vx + vy * vy || 1e-6;
+      const t = Math.max(0, Math.min(1, ((lx - A.x) * vx + (ly - A.y) * vy) / l2));
+      const d = Math.hypot(lx - (A.x + vx * t), ly - (A.y + vy * t));
+      if (d <= hwAtY((i - 1 + t) * seg, len, mw, bw) + extra && d < bd) { bd = d; best = t < 0.5 ? i - 1 : i; }
+    }
+    return best < 0 ? -1 : Math.max(1, best);
+  }
+  function grabTongue(e) {
+    const i = tongueAt(e.clientX, e.clientY, e.pointerType !== 'mouse'); if (i < 0) return false;
+    const [ax, ay] = screenToArt(e.clientX, e.clientY), [lx, ly] = unproject(ax, ay), p = T.P[i];
+    const cl = v => Math.max(-14, Math.min(14, v));
+    T.drag = { id: e.pointerId, i, sx: e.clientX, sy: e.clientY, ox: cl(p.x - lx), oy: cl(p.y - ly) };
+    if (T.phase === 'out' || T.phase === 'hold' || T.phase === 'in') { T.phase = 'hold'; T.et = 1; T.hold0 = performance.now(); }
+    try { document.documentElement.setPointerCapture(e.pointerId); } catch (_) {}
+    document.body.style.cursor = 'grabbing';
+    return true;
+  }
+  function endDrag() {
+    if (!T.drag) return;
+    T.drag = null; document.body.style.cursor = ''; lastCursor = '';
+    if (T.phase === 'hold') { T.et = 1; T.hold0 = performance.now() + 700; }
+  }
+
+  function paintTongue(c, ext) {
+    const P = T.P, { len, mw, bw } = tongueDims(ext), r0 = P[0];
+    let tx = P[Math.min(3, TN - 1)].x - r0.x, ty = P[Math.min(3, TN - 1)].y - r0.y, tm = Math.hypot(tx, ty);
+    if (tm < 1.5) { tx = -Math.sin(TONGUE_ANG); ty = Math.cos(TONGUE_ANG); tm = 1; }
+    tx /= tm; ty /= tm;
+    const Q = [[r0.x - tx * TBACK, r0.y - ty * TBACK]]; P.forEach(p => Q.push([p.x, p.y]));
+    for (let pass = 0; pass < 6; pass++) {
+      const R = Q.map(q => q.slice());
+      for (let i = 1; i < Q.length - 1; i++) { Q[i][0] = 0.25 * R[i - 1][0] + 0.5 * R[i][0] + 0.25 * R[i + 1][0]; Q[i][1] = 0.25 * R[i - 1][1] + 0.5 * R[i][1] + 0.25 * R[i + 1][1]; }
+    }
+    const Lq = Q.length, SX = [], SY = [], NX = [], NY = [], HW = [], US = [];
+    const cr = (a, b, c_, d, t) => 0.5 * (2 * b + (-a + c_) * t + (2 * a - 5 * b + 4 * c_ - d) * t * t + (-a + 3 * b - 3 * c_ + d) * t * t * t);
+    for (let k = 0; k <= TM; k++) {
+      const t = k * (Lq - 1) / TM, i = Math.min(Lq - 2, Math.floor(t)), f = t - i;
+      const q0 = Q[Math.max(i - 1, 0)], q1 = Q[i], q2 = Q[i + 1], q3 = Q[Math.min(i + 2, Lq - 1)];
+      SX[k] = cr(q0[0], q1[0], q2[0], q3[0], f); SY[k] = cr(q0[1], q1[1], q2[1], q3[1], f);
+      US[k] = (t - 1) / (TN - 1); HW[k] = hwAtY(US[k] * len, len, mw, bw);
+    }
+    for (let k = 0; k <= TM; k++) {
+      const a = Math.max(0, k - 1), b = Math.min(TM, k + 1), vx = SX[b] - SX[a], vy = SY[b] - SY[a], m = Math.hypot(vx, vy) || 1;
+      NX[k] = -vy / m; NY[k] = vx / m;
+    }
+    const KAP = [];
+    for (let k = 0; k <= TM; k++) {
+      const a = Math.max(0, k - 2), b = Math.min(TM, k + 2);
+      let d = Math.atan2(NY[b], NX[b]) - Math.atan2(NY[a], NX[a]); d = Math.atan2(Math.sin(d), Math.cos(d));
+      KAP[k] = d / (Math.hypot(SX[b] - SX[a], SY[b] - SY[a]) || 1);
+    }
+    const HWL = [], HWR = [];
+    for (let k = 0; k <= TM; k++) {
+      const kp = KAP[k], lim = 0.9 / Math.max(Math.abs(kp), 1e-4);
+      HWL[k] = kp > 0 ? Math.min(HW[k], lim) : HW[k]; HWR[k] = kp < 0 ? Math.min(HW[k], lim) : HW[k];
+    }
+    const outline = (s, ox, oy) => {
+      c.beginPath();
+      for (let k = 0; k <= TM; k++) { const x = SX[k] + NX[k] * HWL[k] * s + ox, y = SY[k] + NY[k] * HWL[k] * s + oy; k ? c.lineTo(x, y) : c.moveTo(x, y); }
+      for (let k = TM; k >= 0; k--) c.lineTo(SX[k] - NX[k] * HWR[k] * s + ox, SY[k] - NY[k] * HWR[k] * s + oy);
+      c.closePath();
+    };
+    const spinePath = (u0, u1, frac, px) => {
+      let first = true; c.beginPath();
+      for (let k = 0; k <= TM; k++) {
+        if (US[k] < u0 || US[k] > u1) continue;
+        const o = frac * HW[k] + px, x = SX[k] + NX[k] * o, y = SY[k] + NY[k] * o; first ? c.moveTo(x, y) : c.lineTo(x, y); first = false;
+      }
+    };
+    const at = (u, v) => {
+      const t = (u * (TN - 1) + 1) * TM / (Lq - 1), k0 = Math.max(0, Math.min(TM - 1, Math.floor(t))), f = t - k0, k1 = k0 + 1;
+      const x = SX[k0] + (SX[k1] - SX[k0]) * f, y = SY[k0] + (SY[k1] - SY[k0]) * f, nx = NX[k0] + (NX[k1] - NX[k0]) * f, ny = NY[k0] + (NY[k1] - NY[k0]) * f;
+      const hw = HW[k0] + (HW[k1] - HW[k0]) * f;
+      return [x + nx * v * hw * 0.9, y + ny * v * hw * 0.9];
+    };
+    const mixc = (a, b, t) => `rgb(${Math.round(a[0] + (b[0] - a[0]) * t)},${Math.round(a[1] + (b[1] - a[1]) * t)},${Math.round(a[2] + (b[2] - a[2]) * t)})`;
+
+    c.save(); c.translate(-1000, 0); c.shadowOffsetX = 1003 * TS; c.shadowOffsetY = 5.5 * TS;
+    c.shadowColor = 'rgba(70,36,20,.40)'; c.shadowBlur = 8 * TS; c.fillStyle = '#000'; outline(1, 0, 0); c.fill(); c.restore();
+
+    const EDGE_C = [158, 52, 72], MID_C = [212, 104, 120], CEN_C = [238, 146, 156], J = 12;
+    for (let j = 0; j < J; j++) {
+      const s = 1 - j * (0.78 / (J - 1)), t = j / (J - 1), sh = (1 - s) * mw * 0.13;
+      c.fillStyle = t < 0.5 ? mixc(EDGE_C, MID_C, t * 2) : mixc(MID_C, CEN_C, (t - 0.5) * 2);
+      outline(s, -0.5 * sh, -0.8 * sh); c.fill();
+    }
+
+    c.save(); outline(1, 0, 0); c.clip();
+    const tip = Q[Lq - 1];
+    const shade = c.createLinearGradient(r0.x, r0.y, tip[0], tip[1]);
+    const f1 = Math.min(0.45, 30 / len);
+    shade.addColorStop(0, 'rgba(60,12,28,.92)'); shade.addColorStop(f1 * 0.5, 'rgba(60,12,28,.38)'); shade.addColorStop(f1, 'rgba(60,12,28,0)');
+    shade.addColorStop(0.62, 'rgba(255,170,182,0)'); shade.addColorStop(1, 'rgba(255,170,182,.16)');
+    c.fillStyle = shade; c.fillRect(TBOX.x, TBOX.y, TBOX.w, TBOX.h);
+
+    const mk = TM >> 1, side = (NX[mk] * -0.45 + NY[mk] * -0.89) >= 0 ? 1 : -1;
+    c.lineCap = 'round'; c.lineJoin = 'round';
+
+    [[0.05, 0.82, 0.20], [0.10, 0.70, 0.20], [0.18, 0.56, 0.18]].forEach(([a, b, al]) => { spinePath(a, b, 0, 0); c.strokeStyle = `rgba(92,20,38,${al})`; c.lineWidth = 1.6; c.stroke(); });
+    spinePath(0.10, 0.76, 0, side * 1.7); c.strokeStyle = 'rgba(255,205,210,.22)'; c.lineWidth = 0.9; c.stroke();
+
+    const dShadow = new Path2D(), dPale = new Path2D(), dRed = new Path2D(), dRedHi = new Path2D();
+    DOTS.forEach(d => {
+      const q = at(d.u, d.v), r = d.red ? d.r * 1.7 : d.r;
+      if (d.red) { dRed.moveTo(q[0] + r, q[1]); dRed.arc(q[0], q[1], r, 0, 6.2832); dRedHi.moveTo(q[0] - 0.3 + r * 0.4, q[1] - 0.4); dRedHi.arc(q[0] - 0.3, q[1] - 0.4, r * 0.4, 0, 6.2832); }
+      else { dPale.moveTo(q[0] + r, q[1]); dPale.arc(q[0], q[1], r, 0, 6.2832); }
+      dShadow.moveTo(q[0] + 0.5 + r, q[1] + 0.6); dShadow.arc(q[0] + 0.5, q[1] + 0.6, r, 0, 6.2832);
+    });
+    c.fillStyle = 'rgba(96,24,42,.24)'; c.fill(dShadow);
+    c.fillStyle = 'rgba(255,208,214,.30)'; c.fill(dPale);
+    c.fillStyle = 'rgba(194,56,80,.55)'; c.fill(dRed);
+    c.fillStyle = 'rgba(255,228,232,.55)'; c.fill(dRedHi);
+
+    c.save(); c.shadowColor = 'rgba(255,236,236,.65)'; c.shadowBlur = 2 * TS;
+    [[0.15, 0.33, 3.2, 0.36], [0.38, 0.47, 2.4, 0.30], [0.55, 0.79, 3.6, 0.32], [0.84, 0.91, 2.2, 0.38]].forEach(([a, b, w, al]) => {
+      spinePath(a, b, side * 0.34, 0); c.strokeStyle = `rgba(255,240,240,${al})`; c.lineWidth = w; c.stroke();
+    });
+    c.restore();
+    spinePath(0.10, 0.86, -side * 0.80, 0); c.strokeStyle = 'rgba(255,190,200,.16)'; c.lineWidth = 1.3; c.stroke();
+    const sp = at(0.91, side * 0.3); c.fillStyle = 'rgba(255,255,255,.85)'; c.beginPath(); c.arc(sp[0], sp[1], 1.5, 0, 6.2832); c.fill();
+    c.restore();
+
+    outline(1, 0, 0); c.strokeStyle = 'rgba(104,26,44,.50)'; c.lineWidth = 1.1; c.stroke();
+  }
+
+  function paintMouth(jaw, ext, now) {
+    const c = T.ctx;
+    c.setTransform(1, 0, 0, 1, 0, 0); c.clearRect(0, 0, T.cv.width, T.cv.height);
+    const D = JAW_MAX * jaw;
+    if (D < 0.2) return;
+    c.setTransform(TS, 0, 0, TS, -TBOX.x * TS, -TBOX.y * TS);
+    const x0 = MOUTH.x - MOUTH.L, x1 = MOUTH.x + MOUTH.L, N = 28;
+    const thick = x => (5 * Math.min(1, D / 2.5) + D) * jawShape(x);
+    const topY = x => lineY(x) - 0.5, botY = x => topY(x) + thick(x);
+    const alpha = Math.min(1, D / 1.4);
+
+    const cavity = () => {
+      c.beginPath();
+      for (let i = 0; i <= N; i++) { const x = x0 + (x1 - x0) * i / N; i ? c.lineTo(x, topY(x)) : c.moveTo(x, topY(x)); }
+      for (let i = N; i >= 0; i--) { const x = x0 + (x1 - x0) * i / N; c.lineTo(x, botY(x)); }
+      c.closePath();
+    };
+    c.globalAlpha = alpha;
+    c.save(); c.shadowColor = 'rgba(60,24,14,.55)'; c.shadowBlur = 5 * TS; c.fillStyle = 'rgba(60,24,14,.55)'; cavity(); c.fill(); c.restore();
+    const g = c.createLinearGradient(0, lineY(MOUTH.x), 0, lineY(MOUTH.x) + D + 6);
+    g.addColorStop(0, '#12040a'); g.addColorStop(0.55, '#2a0b12'); g.addColorStop(1, '#4a1620');
+    c.fillStyle = g; cavity(); c.fill();
+    c.globalAlpha = 1;
+
+    c.lineCap = 'round';
+    const hairs = (top) => HAIRS.forEach(h => {
+      const x = MOUTH.x + h.u * MOUTH.L * 0.95, t = thick(x);
+      if (t < 1.2) return;
+      const y = top ? topY(x) : botY(x), dir = top ? 1 : -1;
+      c.strokeStyle = h.tone < 0.5 ? 'rgba(176,130,96,.9)' : 'rgba(198,154,116,.9)'; c.lineWidth = 0.9;
+      c.beginPath(); c.moveTo(x, y - dir * 1.5); c.lineTo(x + h.tilt, y + dir * Math.min(h.len, t * 0.5 + 1)); c.stroke();
+    });
+
+    if (ext > 0.003 && T.P) {
+      c.save();
+      c.beginPath();
+      c.moveTo(TBOX.x - 5, topY(TBOX.x - 5)); c.lineTo(TBOX.x + TBOX.w + 5, topY(TBOX.x + TBOX.w + 5));
+      c.lineTo(TBOX.x + TBOX.w + 5, TBOX.y + TBOX.h + 5); c.lineTo(TBOX.x - 5, TBOX.y + TBOX.h + 5); c.closePath(); c.clip();
+      paintTongue(c, ext);
+      c.restore();
+    }
+    c.globalAlpha = 1;
+  }
+  function setupTongue() {
+    T.cv = document.createElement('canvas'); T.cv.width = TBOX.w * TS; T.cv.height = TBOX.h * TS; T.ctx = T.cv.getContext('2d');
+    T.ctx.imageSmoothingEnabled = true; T.ctx.imageSmoothingQuality = 'high';
+  }
+
+  let lastCursor = '';
+  addEventListener('pointerdown', e => {
+    if (grabTongue(e)) { e.preventDefault(); return; }
+    if (overNose(e.clientX, e.clientY, e.pointerType !== 'mouse')) { poke(); e.preventDefault(); }
+  });
+  addEventListener('pointermove', e => {
+    if (T.drag && e.pointerId === T.drag.id) { T.drag.sx = e.clientX; T.drag.sy = e.clientY; return; }
+    if (e.pointerType !== 'mouse') return;
+    const cur = tongueAt(e.clientX, e.clientY, false) >= 0 ? 'grab' : overNose(e.clientX, e.clientY, false) ? 'pointer' : '';
+    if (cur !== lastCursor) { lastCursor = cur; document.body.style.cursor = cur; }
+  }, { passive: true });
+  const release = e => { if (T.drag && e.pointerId === T.drag.id) endDrag(); };
+  addEventListener('pointerup', release); addEventListener('pointercancel', release);
+  addEventListener('blur', () => endDrag());
+
+  const gl = canvas.getContext('webgl2', { premultipliedAlpha: true, alpha: true, antialias: true });
+  const assets = window.CHAR_ASSETS;
+
+  const EYE_RX = 28, EYE_UP = 5, EYE_DOWN = 12;
+  const EYES = {
+    A: { box: LIDS.A, nx: 118, ny: 29, slope: -0.217 },
+    B: { box: LIDS.B, nx:  62, ny: 21, slope: -0.221 },
+  };
+  function paintEye(E, gx, gy) {
+    const dx = gx * EYE_RX;
+    const px = E.nx + dx, py = E.ny + E.slope * dx * 0.9 + (gy < 0 ? gy * EYE_UP : gy * EYE_DOWN);
+    const sx = 1 - 0.16 * gx * gx;
+    const c = E.ctx;
+    c.imageSmoothingEnabled = true; c.imageSmoothingQuality = 'high';
+    c.setTransform(SS, 0, 0, SS, 0, 0); c.globalCompositeOperation = 'source-over';
+    c.clearRect(0, 0, E.box.w, E.box.h);
+    c.save(); c.translate(px, py); c.scale(sx, 1); c.drawImage(E.sprite, -E.m, -E.m); c.restore();
+    c.globalCompositeOperation = 'destination-in'; c.drawImage(E.mask, 0, 0);
+    c.globalCompositeOperation = 'source-over';
+  }
+  function setupEyes(imgs) {
+    for (const k of ['A', 'B']) {
+      const E = EYES[k]; E.sprite = imgs['pupil' + k]; E.mask = imgs['mask' + k]; E.m = assets.eyes[k].m;
+      E.cv = document.createElement('canvas'); E.cv.width = E.box.w * SS; E.cv.height = E.box.h * SS; E.ctx = E.cv.getContext('2d');
+    }
+  }
+  const loadEyeImages = () => Promise.all(['pupilA', 'pupilB', 'maskA', 'maskB'].map(n => load(assets[n]))).then(a => ({ pupilA: a[0], pupilB: a[1], maskA: a[2], maskB: a[3] }));
+
+  if (!gl || !assets) { fallback(); return; }
+
+  const VS = `#version 300 es
+  in vec2 a_pos; in vec2 a_uv;
+  uniform vec2 u_art, u_pivot, u_cen; uniform vec3 u_ell; uniform vec2 u_neck;
+  uniform float u_yaw, u_pitch, u_roll, u_d;
+  uniform float u_jaw, u_L; uniform vec3 u_mouth;
+  out vec2 v_uv;
+  void main() {
+    vec2 q = (a_pos - u_cen) / u_ell.xy;
+    float s = sqrt(max(1.0 - dot(q, q), 0.0));
+    float z = u_ell.z * (0.1 + 0.9 * s);
+    vec2 pos = a_pos;
+    if (u_jaw > 0.0) {
+      float dx = a_pos.x - u_mouth.x;
+      float ly = a_pos.y - (u_mouth.y + u_mouth.z * dx);
+      float ax = min(abs(dx) / u_L, 1.0);
+      float wx = pow(1.0 - ax * ax, 0.6);
+      float wy = smoothstep(3.0, 6.0, ly) * (1.0 - 0.75 * smoothstep(25.0, 100.0, ly));
+      pos.y += u_jaw * wx * wy;
+    }
+    vec3 p = vec3(pos - u_pivot, z);
+    float cy = cos(u_yaw), sy = sin(u_yaw);
+    p = vec3(p.x * cy + p.z * sy, p.y, -p.x * sy + p.z * cy);
+    float cp = cos(u_pitch), sp = sin(u_pitch);
+    p = vec3(p.x, p.y * cp - p.z * sp, p.y * sp + p.z * cp);
+    float cr = cos(u_roll), sr = sin(u_roll);
+    p.xy = vec2(p.x * cr - p.y * sr, p.x * sr + p.y * cr);
+    vec2 turned = u_pivot + p.xy * (u_d / (u_d - p.z));
+    float w = 1.0 - smoothstep(u_neck.x, u_neck.y, a_pos.y);
+    vec2 o = mix(pos, turned, w);
+    gl_Position = vec4(o.x / u_art.x * 2.0 - 1.0, 1.0 - o.y / u_art.y * 2.0, 0.0, 1.0);
+    v_uv = a_uv;
+  }`;
+  const FS = `#version 300 es
+  precision mediump float;
+  uniform sampler2D u_tex; in vec2 v_uv; out vec4 o;
+  void main() { o = texture(u_tex, v_uv); }`;
+
+  function compile(type, src) {
+    const s = gl.createShader(type); gl.shaderSource(s, src); gl.compileShader(s);
+    if (!gl.getShaderParameter(s, gl.COMPILE_STATUS)) throw new Error(gl.getShaderInfoLog(s));
+    return s;
+  }
+  let prog;
+  try {
+    prog = gl.createProgram();
+    gl.attachShader(prog, compile(gl.VERTEX_SHADER, VS));
+    gl.attachShader(prog, compile(gl.FRAGMENT_SHADER, FS));
+    gl.linkProgram(prog);
+    if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) throw new Error(gl.getProgramInfoLog(prog));
+  } catch (err) { console.error(err); fallback(); return; }
+
+  const U = n => gl.getUniformLocation(prog, n);
+  const uni = { art: U('u_art'), pivot: U('u_pivot'), cen: U('u_cen'), ell: U('u_ell'),
+                neck: U('u_neck'), jaw: U('u_jaw'), mouth: U('u_mouth'), L: U('u_L'), yaw: U('u_yaw'), pitch: U('u_pitch'), roll: U('u_roll'), d: U('u_d'), tex: U('u_tex') };
+
+  function makeGrid(x, y, w, h, cell, tex) {
+    const nx = Math.max(1, Math.round(w / cell)), ny = Math.max(1, Math.round(h / cell));
+    const v = new Float32Array((nx + 1) * (ny + 1) * 4), idx = new Uint16Array(nx * ny * 6);
+    let vi = 0;
+    for (let j = 0; j <= ny; j++) for (let i = 0; i <= nx; i++) {
+      const px = x + w * i / nx, py = y + h * j / ny;
+      v[vi++] = px; v[vi++] = py;
+      v[vi++] = (px - tex.x) / tex.w; v[vi++] = (py - tex.y) / tex.h;
+    }
+    let ii = 0;
+    for (let j = 0; j < ny; j++) for (let i = 0; i < nx; i++) {
+      const a = j * (nx + 1) + i, b = a + 1, c = a + nx + 1, d = c + 1;
+      idx.set([a, b, c, b, d, c], ii); ii += 6;
+    }
+    const vao = gl.createVertexArray(); gl.bindVertexArray(vao);
+    const vb = gl.createBuffer(); gl.bindBuffer(gl.ARRAY_BUFFER, vb); gl.bufferData(gl.ARRAY_BUFFER, v, gl.STATIC_DRAW);
+    const ib = gl.createBuffer(); gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, ib); gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, idx, gl.STATIC_DRAW);
+    const ap = gl.getAttribLocation(prog, 'a_pos'), au = gl.getAttribLocation(prog, 'a_uv');
+    gl.enableVertexAttribArray(ap); gl.vertexAttribPointer(ap, 2, gl.FLOAT, false, 16, 0);
+    gl.enableVertexAttribArray(au); gl.vertexAttribPointer(au, 2, gl.FLOAT, false, 16, 8);
+    gl.bindVertexArray(null);
+    return { vao, count: idx.length };
+  }
+  function makeTexture(source, mip) {
+    const t = gl.createTexture(); gl.bindTexture(gl.TEXTURE_2D, t);
+    gl.pixelStorei(gl.UNPACK_PREMULTIPLY_ALPHA_WEBGL, true);
+    gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, source);
+    if (mip) gl.generateMipmap(gl.TEXTURE_2D);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, mip ? gl.LINEAR_MIPMAP_LINEAR : gl.LINEAR);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+    return t;
+  }
+  function uploadLid(L) {
+    gl.bindTexture(gl.TEXTURE_2D, L.tex);
+    gl.pixelStorei(gl.UNPACK_PREMULTIPLY_ALPHA_WEBGL, true);
+    gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, L.cv);
+  }
+
+  function resize() {
+    const dpr = Math.min(2, devicePixelRatio || 1), r = stage.getBoundingClientRect();
+    const w = Math.max(2, Math.round(r.width * dpr)), h = Math.max(2, Math.round(r.height * dpr));
+    if (canvas.width !== w || canvas.height !== h) { canvas.width = w; canvas.height = h; }
+    gl.viewport(0, 0, w, h);
+  }
+  new ResizeObserver(resize).observe(stage);
+
+  Promise.all([load(assets.head), load(assets.lidA), load(assets.lidB), loadEyeImages()]).then(([headImg, aImg, bImg, eyeImgs]) => {
+    setupEyes(eyeImgs); setupTongue();
+    const headTex = makeTexture(headImg, true);
+    const headMesh = makeGrid(HEAD_BOX.x, HEAD_BOX.y, HEAD_BOX.w, HEAD_BOX.h, 4, HEAD_BOX);
+    [[LIDS.A, aImg], [LIDS.B, bImg]].forEach(([L, img]) => {
+      L.img = img; L.cv = document.createElement('canvas'); L.cv.width = L.w; L.cv.height = L.h;
+      L.ctx = L.cv.getContext('2d'); L.tex = makeTexture(L.cv, false);
+      L.mesh = makeGrid(L.x, L.y, L.w, L.h, 16, { x: L.x, y: L.y, w: L.w, h: L.h });
+      L.shown = 0;
+    });
+    for (const k of ['A', 'B']) {
+      const E = EYES[k], b = E.box;
+      E.tex = makeTexture(E.cv, false); E.mesh = makeGrid(b.x, b.y, b.w, b.h, 16, { x: b.x, y: b.y, w: b.w, h: b.h });
+      E.gx = NaN; E.gy = NaN;
+    }
+    T.tex = makeTexture(T.cv, false); T.mesh = makeGrid(TBOX.x, TBOX.y, TBOX.w, TBOX.h, 10, TBOX); T.shown = -1;
+    resize();
+    gl.enable(gl.BLEND); gl.blendFunc(gl.ONE, gl.ONE_MINUS_SRC_ALPHA);
+    gl.useProgram(prog);
+    gl.uniform2f(uni.art, ART_W, ART_H); gl.uniform2f(uni.pivot, NECK[0], NECK[1]);
+    gl.uniform2f(uni.cen, SKULL.cx, SKULL.cy); gl.uniform3f(uni.ell, SKULL.rx, SKULL.ry, SKULL.rz);
+    gl.uniform3f(uni.mouth, MOUTH.x, MOUTH.y, MOUTH.k); gl.uniform1f(uni.L, MOUTH.L);
+    gl.uniform2f(uni.neck, NECK_TOP, NECK_BASE); gl.uniform1f(uni.d, PERSP); gl.uniform1i(uni.tex, 0);
+
+    let last = performance.now();
+    function frame(now) {
+      const dt = Math.min(0.05, Math.max(0.001, (now - last) / 1000)); last = now;
+      let yaw = 0, pitch = 0, roll = 0;
+      if (!reduce) [yaw, pitch, roll] = step(now, dt);
+      const p = stepBlink(now);
+      const eg = reduce ? [0, 0] : [S.egx, S.egy];
+      pose = { yaw, pitch, roll };
+      window.__pose = { yaw, pitch, roll, blink: p, eyeX: eg[0], eyeY: eg[1] };
+
+      gl.useProgram(prog);
+      gl.uniform1f(uni.yaw, rad(yaw)); gl.uniform1f(uni.pitch, rad(pitch)); gl.uniform1f(uni.roll, rad(roll));
+      gl.clearColor(0, 0, 0, 0); gl.clear(gl.COLOR_BUFFER_BIT);
+      gl.activeTexture(gl.TEXTURE0);
+      stepTongue(now, dt);
+      gl.uniform1f(uni.jaw, JAW_MAX * T.jaw);
+      gl.bindTexture(gl.TEXTURE_2D, headTex); gl.bindVertexArray(headMesh.vao);
+      gl.drawElements(gl.TRIANGLES, headMesh.count, gl.UNSIGNED_SHORT, 0);
+      gl.uniform1f(uni.jaw, 0);
+      for (const k of ['A', 'B']) {
+        const E = EYES[k];
+        if (Math.abs(E.gx - eg[0]) > 0.002 || Math.abs(E.gy - eg[1]) > 0.002 || E.gx !== E.gx) { paintEye(E, eg[0], eg[1]); uploadLid(E); E.gx = eg[0]; E.gy = eg[1]; }
+        gl.bindTexture(gl.TEXTURE_2D, E.tex); gl.bindVertexArray(E.mesh.vao);
+        gl.drawElements(gl.TRIANGLES, E.mesh.count, gl.UNSIGNED_SHORT, 0);
+      }
+      if (T.jaw > 0.001 || T.shown > 0) {
+        paintMouth(T.jaw, T.ext, now); uploadLid({ tex: T.tex, cv: T.cv }); T.shown = T.jaw;
+        gl.bindTexture(gl.TEXTURE_2D, T.tex); gl.bindVertexArray(T.mesh.vao);
+        gl.drawElements(gl.TRIANGLES, T.mesh.count, gl.UNSIGNED_SHORT, 0);
+      }
+      if (p > 0.001) for (const L of [LIDS.A, LIDS.B]) {
+        paintLid(L, p); uploadLid(L);
+        gl.bindVertexArray(L.mesh.vao); gl.drawElements(gl.TRIANGLES, L.mesh.count, gl.UNSIGNED_SHORT, 0);
+      }
+      requestAnimationFrame(frame);
+    }
+    requestAnimationFrame(frame);
+  }).catch(err => { console.error(err); fallback(); });
+
+  function fallback() {
+    canvas.style.display = 'none';
+    if (!assets) return;
+    const cv = document.getElementById('fallback'), c2 = cv.getContext('2d');
+    cv.width = HEAD_BOX.w; cv.height = HEAD_BOX.h;
+    cv.style.cssText += ';display:block;left:' + (HEAD_BOX.x / ART_W * 100) + '%;top:' + (HEAD_BOX.y / ART_H * 100) + '%;width:' + (HEAD_BOX.w / ART_W * 100) + '%;height:' + (HEAD_BOX.h / ART_H * 100) + '%;transform-origin:' + ((NECK[0] - HEAD_BOX.x) / HEAD_BOX.w * 100) + '% ' + ((NECK[1] - HEAD_BOX.y) / HEAD_BOX.h * 100) + '%';
+    Promise.all([load(assets.head), loadEyeImages()]).then(([headImg, eyeImgs]) => {
+      setupEyes(eyeImgs); setupTongue();
+      let last = performance.now();
+      (function f(now) {
+        const dt = Math.min(0.05, (now - last) / 1000); last = now;
+        const [yaw] = reduce ? [0] : step(now, dt);
+        const gx = reduce ? 0 : S.egx, gy = reduce ? 0 : S.egy;
+        c2.clearRect(0, 0, cv.width, cv.height); c2.drawImage(headImg, 0, 0);
+        for (const k of ['A', 'B']) { const E = EYES[k]; paintEye(E, gx, gy); c2.drawImage(E.cv, E.box.x - HEAD_BOX.x, E.box.y - HEAD_BOX.y, E.box.w, E.box.h); }
+        pose = { yaw: 0, pitch: 0, roll: yaw * 0.25 };
+        stepTongue(now, dt);
+        if (T.jaw > 0.001) { paintMouth(T.jaw, T.ext, now); c2.drawImage(T.cv, TBOX.x - HEAD_BOX.x, TBOX.y - HEAD_BOX.y, TBOX.w, TBOX.h); }
+        cv.style.transform = `rotate(${(yaw * 0.25).toFixed(3)}deg)`;
+        requestAnimationFrame(f);
+      })(last);
+    });
+  }
+
+  // Scroll-based animations
+  const sections = document.querySelectorAll('#education, #experience, #skills, #projects-section');
+  const projectCards = document.querySelectorAll('.project-card');
+  const heroSection = document.getElementById('hero');
+  const projectsSection = document.getElementById('projects-section');
+
+  // Track which cards have been shown to prevent re-animating
+  const shownCards = new Set();
+
+  // Character positioning based on scroll
+  window.addEventListener('scroll', () => {
+    const scrollY = window.scrollY;
+    const windowHeight = window.innerHeight;
+
+    // Move character to left when scrolling past hero
+    if (scrollY > windowHeight * 0.1) {
+      stage.classList.add('character-left');
+      stage.classList.remove('character-centered');
+    } else {
+      stage.classList.add('character-centered');
+      stage.classList.remove('character-left');
+    }
+
+    // Show section content on scroll
+    sections.forEach(section => {
+      const rect = section.getBoundingClientRect();
+      const sectionContent = section.querySelector('.section-content, .projects-container');
+      if (sectionContent) {
+        if (rect.top < windowHeight * 0.8) {
+          sectionContent.classList.add('visible');
+        }
+      }
+    });
+
+    // Show project cards sequentially
+    projectCards.forEach((card, index) => {
+      const rect = card.getBoundingClientRect();
+      if (rect.top < windowHeight * 0.9 && !shownCards.has(index)) {
+        shownCards.add(index);
+        setTimeout(() => {
+          card.classList.add('visible');
+        }, index * 100);
+      }
+    });
+  });
+
+  // Initial check after a short delay
+  setTimeout(() => {
+    window.dispatchEvent(new Event('scroll'));
+  }, 100);
+
+  // Skill click handler
+  const skillItems = document.querySelectorAll('.skill-item');
+  const skillNameDisplay = document.getElementById('skill-name-display');
+  const skillName = skillNameDisplay.querySelector('.skill-name');
+  const ratingBar = skillNameDisplay.querySelector('.rating-bar');
+  const ratingValue = skillNameDisplay.querySelector('.rating-value');
+
+  skillItems.forEach(item => {
+    item.addEventListener('click', () => {
+      const skillNameText = item.getAttribute('data-skill');
+      // Generate random rating between 3 and 4.5
+      const rating = (Math.random() * 1.5 + 3).toFixed(1);
+      const ratingPercent = (rating / 5) * 100;
+      
+      skillName.textContent = skillNameText;
+      ratingValue.textContent = `${rating}/5`;
+      
+      skillNameDisplay.classList.add('visible');
+      
+      // Reset and animate the rating bar
+      ratingBar.style.width = '0%';
+      setTimeout(() => {
+        ratingBar.style.width = `${ratingPercent}%`;
+      }, 100);
+    });
+  });
+
+  // Hide skill name when clicking elsewhere
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('.skill-item')) {
+      skillNameDisplay.classList.remove('visible');
+      ratingBar.style.width = '0%';
+    }
+  });
+})();
+</script>
+</body>
+</html>
