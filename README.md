@@ -20,6 +20,7 @@ This portfolio is a modern, interactive single-page application designed to show
 ### 🎯 Key Features
 
 - **🦸 Interactive Character Design** - Dynamic character that moves and responds to scroll
+- **🌍 Interactive World Map** - Animated SVG world map with country hover effects and location pin
 - **✨ Smooth Animations** - CSS-based animations for a fluid user experience
 - **📱 Fully Responsive** - Optimized for desktop, tablet, and mobile devices
 - **🎨 Modern UI/UX** - Clean, minimalist design with attention to detail
@@ -46,6 +47,8 @@ This portfolio is a modern, interactive single-page application designed to show
 - **HTML5** - Semantic markup and structure
 - **CSS3** - Custom animations, gradients, and responsive design
 - **JavaScript** - Interactive features and dynamic content
+- **D3.js** - Data visualization library for the interactive world map
+- **TopoJSON** - Topology-preserving GeoJSON for map rendering
 - **Google Fonts** - Chewy & Mansalva fonts for unique typography
 - **SVG Icons** - Scalable vector graphics for icons and logos
 
@@ -114,6 +117,7 @@ portfolio/
 ├── assets.js              # JavaScript assets and configurations
 ├── body.png               # Character sprite
 ├── wall.jpg               # Background texture
+├── map.png                # World map image (map section)
 ├── browser tab logo.png   # Favicon
 ├── p1.jpg - p13.jpg       # Project showcase images
 ├── Ahanaf_Mokammel_Omi_Curriculum_Vitae.pdf
@@ -148,6 +152,11 @@ portfolio/
 5. **Add Documents**
    - Replace PDF files with your own CV, certificates, and thesis
    - Update document links in the documents section
+
+6. **Customize Map Section**
+   - Update the location coordinates in the map JavaScript to change the pin location
+   - Replace the avatar image or styling to personalize the map marker
+   - Modify the map colors and animations in the CSS
 
 ---
 
