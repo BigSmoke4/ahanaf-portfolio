@@ -1,297 +1,447 @@
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!--                    AHANAF'S PORTFOLIO                        -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+
 <div align="center">
 
-# 🎨 Ahanaf's Portfolio
+#  AHANAF MOKAMMEL OMI 
 
-### ✨ A beautifully crafted personal portfolio website showcasing my journey as a Full-Stack Developer
+### Full-Stack Developer · Software Engineer · AI Builder
 
-[![GitHub Stars](https://img.shields.io/github/stars/BigSmoke4/ahanaf-portfolio?style=social)](https://github.com/BigSmoke4/ahanaf-portfolio)
-[![GitHub Forks](https://img.shields.io/github/forks/BigSmoke4/ahanaf-portfolio?style=social)](https://github.com/BigSmoke4/ahanaf-portfolio/fork)
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![Website](https://img.shields.io/badge/website-live-green.svg)](https://ahanaf.dev)
+*Crafting digital experiences with passion and precision.*
+
+Building scalable web applications, distributed systems, and AI-powered solutions that make a difference.
+
+<br>
+
+[![Portfolio](https://img.shields.io/badge/PORTFOLIO-6A4682?style=for-the-badge&logo=vercel&logoColor=white)](https://ahanafomiportfolio.vercel.app/)
+[![GitHub](https://img.shields.io/badge/GITHUB-242424?style=for-the-badge&logo=github&logoColor=white)](https://github.com/BigSmoke4)
+[![LinkedIn](https://img.shields.io/badge/LINKEDIN-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/ahanaf-mokammel-omi-b15764268/)
+[![Email](https://img.shields.io/badge/EMAIL-EA4335?style=for-the-badge&logo=gmail&logoColor=white)](mailto:ahanafmo@gmail.com)
+
+<br>
+
+<img src="https://capsule-render.vercel.app/api?type=rect&color=6A4682&height=3&section=header" width="100%" alt="Purple divider">
+
+**A personal portfolio built around motion, illustration, and exploration.**
 
 </div>
 
 ---
 
-## 🌟 Overview
+## 01 / THE EXPERIENCE
 
-This portfolio is a modern, interactive single-page application designed to showcase my professional journey, skills, and projects. Built with a focus on aesthetics and user experience, it features smooth animations, a unique character-based design, and responsive layout.
+This portfolio is an interactive, illustrated journey through my work, education, technical skills, and professional experience.
 
-### 🎯 Key Features
+Rather than presenting everything in a conventional grid of cards, the experience combines a custom illustrated environment, a persistent character, animated typography, interactive project objects, and a continuous scrolling layout.
 
-- **🦸 Interactive Character Design** - Dynamic character that moves and responds to scroll
-- **🌍 Interactive World Map** - Animated SVG world map with country hover effects and location pin
-- **✨ Smooth Animations** - CSS-based animations for a fluid user experience
-- **📱 Fully Responsive** - Optimized for desktop, tablet, and mobile devices
-- **🎨 Modern UI/UX** - Clean, minimalist design with attention to detail
-- **⚡ Fast Loading** - Optimized assets and efficient code structure
-- **🔗 Social Integration** - Quick access to LinkedIn, GitHub, Email, and Discord
-- **📄 Document Showcase** - Easy access to CV, Certificates, and Thesis
+The visual direction is playful, expressive, and intentionally different from a traditional developer portfolio.
+
+### ✦ Design philosophy
+
+- **Immersive storytelling** — Discover each section through a continuous scrolling experience.
+- **Illustrated identity** — A custom character and textured purple environment create a recognizable visual identity.
+- **Interaction with purpose** — Project objects, technology icons, and social links invite exploration.
+- **Motion and atmosphere** — Animated reveals, transitions, and a persistent progress indicator provide visual continuity.
+- **Responsive by design** — Adaptations for desktop, tablet, and mobile screens.
+- **Accessibility considerations** — Reduced-motion preferences are supported for key scroll animations.
 
 ---
 
-## 🚀 Tech Stack
-
-### Frontend Technologies
+## 02 / INSIDE THE PORTFOLIO
 
 <div align="center">
+
+| EXPERIENCE | DESCRIPTION |
+|:---:|---|
+| ✦ Hero | Animated introduction and personal statement |
+| 🎓 Education | Academic background and qualifications |
+| 🧩 Skills | Interactive technology icons and animated indicators |
+| 💿 Projects | Interactive project disks with detailed descriptions |
+| 💼 Experience | Professional and extracurricular experience |
+| 📄 Documents | Shortcuts for CV, certificates, and thesis |
+| 🔗 Connections | LinkedIn, GitHub, email, and Discord |
+| 🌍 World Map | Interactive geographic visualization with a Bangladesh location marker |
+
+</div>
+
+### The character
+
+The portfolio features a persistent character stage, using image and canvas layers to support the illustrated visual experience as visitors scroll through the page.
+
+### The project universe
+
+Projects are presented as interactive disks rather than a conventional card grid. Selecting a project opens a browser-inspired window with a project description, technology stack, and relevant links.
+
+### The world map
+
+The map uses D3.js and TopoJSON to render geographic data, with a distinctive illustrated appearance. Country boundaries, hover interactions, and the location marker make it part of the portfolio's identity.
+
+---
+
+## 03 / TECHNOLOGY STACK
+
+<div align="center">
+
+### Frontend
 
 ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
 
-</div>
+### Backend & Data
 
-### Key Technologies Used
-
-- **HTML5** - Semantic markup and structure
-- **CSS3** - Custom animations, gradients, and responsive design
-- **JavaScript** - Interactive features and dynamic content
-- **D3.js** - Data visualization library for the interactive world map
-- **TopoJSON** - Topology-preserving GeoJSON for map rendering
-- **Google Fonts** - Chewy & Mansalva fonts for unique typography
-- **SVG Icons** - Scalable vector graphics for icons and logos
-
----
-
-## 🛠️ Installation & Setup
-
-### Prerequisites
-
-- A modern web browser (Chrome, Firefox, Safari, Edge)
-- A local web server (optional, for development)
-
-### Clone the Repository
-
-```bash
-git clone https://github.com/BigSmoke4/ahanaf-portfolio.git
-cd ahanaf-portfolio
-```
-
-### Running Locally
-
-#### Option 1: Direct File Opening
-Simply open `index.html` in your web browser:
-
-```bash
-# On Windows
-start index.html
-
-# On macOS
-open index.html
-
-# On Linux
-xdg-open index.html
-```
-
-#### Option 2: Using a Local Server (Recommended)
-
-Using Python:
-```bash
-# Python 3
-python -m http.server 8000
-
-# Python 2
-python -m SimpleHTTPServer 8000
-```
-
-Using Node.js (http-server):
-```bash
-npx http-server -p 8000
-```
-
-Using VS Code Live Server:
-1. Install the "Live Server" extension
-2. Right-click on `index.html`
-3. Select "Open with Live Server"
-
-Then visit `http://localhost:8000` in your browser.
-
----
-
-## 📁 Project Structure
-
-```
-portfolio/
-├── index.html              # Main HTML file
-├── assets.js              # JavaScript assets and configurations
-├── body.png               # Character sprite
-├── wall.jpg               # Background texture
-├── map.png                # World map image (map section)
-├── browser tab logo.png   # Favicon
-├── p1.jpg - p13.jpg       # Project showcase images
-├── Ahanaf_Mokammel_Omi_Curriculum_Vitae.pdf
-├── Certificates.pdf
-├── Thesis Paper.pdf
-└── source/                # Source assets directory
-```
-
----
-
-## 🎨 Customization
-
-### Personalizing the Portfolio
-
-1. **Update Personal Information**
-   - Edit `index.html` to change your name, bio, and contact details
-   - Update social media links in the contact bar section
-
-2. **Modify Skills**
-   - Add or remove skills in the skills section
-   - Update skill icons and proficiency levels
-
-3. **Update Projects**
-   - Replace project cards with your own projects
-   - Update project images (p1.jpg, p2.jpg, etc.)
-   - Modify project descriptions and tech stacks
-
-4. **Change Colors**
-   - Modify CSS variables in the `<style>` section
-   - Update background colors, gradients, and accent colors
-
-5. **Add Documents**
-   - Replace PDF files with your own CV, certificates, and thesis
-   - Update document links in the documents section
-
-6. **Customize Map Section**
-   - Update the location coordinates in the map JavaScript to change the pin location
-   - Replace the avatar image or styling to personalize the map marker
-   - Modify the map colors and animations in the CSS
-
----
-
-## 🌐 Deployment
-
-### GitHub Pages
-
-1. Push the repository to GitHub
-2. Go to repository Settings → Pages
-3. Select the main branch as source
-4. Your site will be live at `https://username.github.io/portfolio`
-
-### Netlify
-
-```bash
-# Install Netlify CLI
-npm install -g netlify-cli
-
-# Deploy
-netlify deploy --prod
-```
-
-### Vercel
-
-```bash
-# Install Vercel CLI
-npm install -g vercel
-
-# Deploy
-vercel --prod
-```
-
----
-
-## 🤝 Contributing
-
-Contributions, issues, and feature requests are welcome! Feel free to check the [issues page](https://github.com/BigSmoke4/ahanaf-portfolio/issues).
-
----
-
-## 📝 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
----
-
-## � MIT License
-
-Copyright (c) 2026 Ahanaf Mokammel Omi
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-
----
-
-## �👤 Author
-
-**Ahanaf Mokammel Omi**
-
-- **LinkedIn:** [Ahanaf Mokammel Omi](https://linkedin.com/in/ahanaf-mokammel-omi-b15764268/)
-- **GitHub:** [@BigSmoke4](https://github.com/BigSmoke4)
-- **Email:** [ahanafmo@gmail.com](mailto:ahanafmo@gmail.com)
-- **Discord:** [Discord Profile](https://discord.com/users/731001045270134794)
-
----
-
-## 🙏 Acknowledgments
-
-- Inspired by modern portfolio designs
-- Fonts provided by Google Fonts
-- Icons from various open-source icon libraries
-- Character design inspired by popular gaming aesthetics
-
----
-
-## 📊 Skills Showcased
-
-<div align="center">
-
-### Backend
-![C#](https://img.shields.io/badge/C%23-68217A?style=for-the-badge&logo=c-sharp&logoColor=white)
+![C%23](https://img.shields.io/badge/C%23-68217A?style=for-the-badge&logo=csharp&logoColor=white)
 ![ASP.NET](https://img.shields.io/badge/ASP.NET-512BD4?style=for-the-badge&logo=dotnet&logoColor=white)
-![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![SQL Server](https://img.shields.io/badge/SQL_Server-CC2927?style=for-the-badge&logo=microsoftsqlserver&logoColor=white)
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-336791?style=for-the-badge&logo=postgresql&logoColor=white)
 ![Redis](https://img.shields.io/badge/Redis-DC382D?style=for-the-badge&logo=redis&logoColor=white)
 
-### Frontend
-![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
-![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
-![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+### Visualization & Infrastructure
 
-### Tools & DevOps
+![D3.js](https://img.shields.io/badge/D3.js-F9A03C?style=for-the-badge&logo=d3dotjs&logoColor=white)
+![TopoJSON](https://img.shields.io/badge/TopoJSON-6A4682?style=for-the-badge)
 ![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
 ![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)
-![GitHub](https://img.shields.io/badge/GitHub-333333?style=for-the-badge&logo=github&logoColor=white)
+![Vercel](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)
 
 </div>
 
----
+### Implementation details
 
-## 📈 Featured Projects
-
-### 🏢 NEXUS - Supply Chain Intelligence Command Center
-Enterprise supply-chain decision-support platform with graph-based dependency modeling, disruption simulation, and AI-powered analytics.
-
-### 🔐 VERITAS - Enterprise Identity & Access Governance
-IAM and zero-trust authorization platform with RBAC, ABAC, risk-aware MFA, and privileged access controls.
-
-### 🤖 NEURA - Neural AI Agent Orchestration
-Multi-agent orchestration platform maintaining task continuity across AI providers with context monitoring and automatic handoff.
-
-### 🔧 FORGE - AI Software Engineering Intelligence
-Software-engineering intelligence pipeline combining Roslyn semantic analysis, repository indexing, and security/technical-debt analysis.
+| Technology | Role |
+|---|---|
+| HTML5 | Portfolio structure and semantic markup |
+| CSS3 | Illustrated environment, responsive styling, transitions, and keyframe animations |
+| JavaScript | Scroll interactions, project modals, skill interactions, and dynamic interface behavior |
+| D3.js | Geographic rendering and map interactions |
+| TopoJSON | Geographic boundary data |
+| Google Fonts | Chewy and Mansalva typography |
+| Canvas | Character rendering layers and visual fallback support |
+| Vercel | Portfolio deployment and analytics integration |
 
 ---
+
+## 04 / FEATURED PROJECTS
+
+A collection of software engineering, AI, infrastructure, enterprise, and web application projects.
 
 <div align="center">
 
-### ⭐ If you like this portfolio, consider giving it a star! ⭐
-
-Made with ❤️ by [Ahanaf Mokammel Omi](https://github.com/BigSmoke4)
+### ◈ ENTERPRISE SYSTEMS & INTELLIGENCE
 
 </div>
+
+### 01. NEXUS — Supply Chain Intelligence
+
+A supply-chain decision-support platform that models dependencies, identifies bottlenecks, and simulates disruptions.
+
+- Graph-based dependency analysis using BFS and DFS.
+- Stockout, service-level, and revenue-at-risk simulations.
+- Role-based access control, audit logging, and real-time updates.
+
+**Stack:** ASP.NET Core MVC · C# · PostgreSQL · Redis · EF Core · Docker
+
+[↗ View Repository](https://github.com/BigSmoke4/NEXUS-Supply-Chain-Intelligence-Command-Center)
+
+### 02. VERITAS — Identity & Access Governance
+
+A zero-trust identity and access management platform focused on policy evaluation, risk-aware authentication, and privileged access.
+
+- RBAC and ABAC authorization.
+- Risk-aware multifactor authentication and just-in-time access.
+- Policy versioning, access reviews, and secure API-key management.
+
+**Stack:** ASP.NET Core · C# · PostgreSQL · Redis · EF Core · Identity
+
+[↗ View Repository](https://github.com/BigSmoke4/VERITAS)
+
+### 03. NEURA — AI Agent Orchestration
+
+A multi-agent platform designed to maintain task continuity across different AI providers.
+
+- Validated context handoffs and weighted provider routing.
+- Memory, knowledge graphs, and AI provider adapters.
+- Retry strategies, circuit breakers, rate limiting, and cost tracking.
+
+**Stack:** ASP.NET Core · C# · PostgreSQL · Redis · SignalR · AI APIs
+
+[↗ View Repository](https://github.com/BigSmoke4/NEURA-Neural-AI-Agent-Orchestration-Continuity-Platform)
+
+### 04. FORGE — Software Engineering Intelligence
+
+An engineering intelligence platform that analyzes repositories, code structure, dependencies, and technical risk.
+
+- Roslyn-based C# semantic analysis and symbol extraction.
+- Repository indexing and dependency graph construction.
+- Security-pattern detection, technical-debt analysis, and architecture policies.
+
+**Stack:** ASP.NET Core · C# · Roslyn · PostgreSQL · EF Core · Git
+
+[↗ View Repository](https://github.com/BigSmoke4/FORGE-AI-Software-Engineering-Intelligence-Platform)
+
+### 05. PULSE — Distributed Job Processing
+
+A job orchestration and workflow platform built around reliable background processing.
+
+- RabbitMQ priority queues and dead-letter handling.
+- Redis locks, idempotency, retries, and worker heartbeats.
+- Job scheduling, cancellation, and queue monitoring.
+
+**Stack:** ASP.NET Core MVC · C# · RabbitMQ · Redis · SQL Server · EF Core
+
+[↗ View Repository](https://github.com/BigSmoke4/Pulse-Job-Orchestrator)
+
+<div align="center">
+
+### ◈ WEB PLATFORMS & AUTONOMOUS SYSTEMS
+
+</div>
+
+### 06. BDPriceFinder — Multi-Vendor Price Comparison
+
+A Bangladesh-focused e-commerce and price-comparison platform with vendor workflows and role-specific dashboards.
+
+- Product lifecycle management, inventory, and order workflows.
+- Dynamic product variants, coupons, EMI, and warranty support.
+- Email OTP authentication, Elasticsearch search, and Redis caching.
+
+**Stack:** ASP.NET MVC · C# · Razor Views · JavaScript · SQL Server
+
+[↗ Visit Website](https://bdpricefinder.com/)
+
+### 07. LOCAL AGENT — Autonomous Coding Platform
+
+A local-first autonomous coding platform designed to plan, execute, and verify multi-step engineering tasks.
+
+- Persistent sessions and dependency-aware DAG task planning.
+- Incremental repository indexing and cross-file reference graphs.
+- Layered memory, retrieval, retries, and verification loops.
+
+**Stack:** ASP.NET Core · C# · PostgreSQL · EF Core · Ollama · Roslyn · SignalR
+
+[↗ View Repository](https://github.com/BigSmoke4/Local-Agent-Platform)
+
+### 08. ATLAS — Intelligent API & Event Platform
+
+An enterprise platform for API management, event processing, traffic control, and operational observability.
+
+- Kafka-based event processing and replayable dead-letter queues.
+- Redis-backed rate limiting and circuit breakers.
+- Tenant authorization, health probing, and service-level monitoring.
+
+**Stack:** ASP.NET Core · C# · PostgreSQL · Redis · Kafka · OpenTelemetry
+
+[↗ View Repository](https://github.com/BigSmoke4/ATLAS-Enterprise-Intelligent-API-Event-Platform)
+
+### 09. AURORA — Organizational Resilience
+
+A decision-intelligence and digital-twin platform for modeling organizational dependencies and evaluating disruptions.
+
+- Graph traversal and shortest-path analysis.
+- Bottleneck detection and disruption propagation.
+- Risk scoring, investigation workflows, and audit trails.
+
+**Stack:** ASP.NET Core MVC · C# · PostgreSQL · EF Core · SignalR
+
+[↗ View Repository](https://github.com/BigSmoke4/AURORA-Autonomous-Unified-Reasoning-Organizational-Resilience-Architecture)
+
+### 10. SENTINEL — Operational Risk Simulator
+
+An operational-risk simulation platform designed to model failures and measure resilience.
+
+- Dependency graphs and critical-path analysis.
+- Monte Carlo simulation using normal and log-normal distributions.
+- Recovery-strategy scoring, resilience metrics, and risk heatmaps.
+
+**Stack:** ASP.NET Core MVC · C# · PostgreSQL · Redis
+
+[↗ View Repository](https://github.com/BigSmoke4/sentinel-risk-simulator)
+
+### 11. AEGIS — Intelligent Incident Response
+
+An incident-response and digital-operations platform focused on anomaly detection, correlation, and root-cause analysis.
+
+- Rolling z-score anomaly detection.
+- Graph-based incident correlation and root-cause ranking.
+- Business-impact analysis and human-approved remediation runbooks.
+
+**Stack:** ASP.NET Core MVC · C# · PostgreSQL · Redis
+
+[↗ View Repository](https://github.com/BigSmoke4/Aegis-Intelligent-Incident-Response-Digital-Operations-Platform)
+
+### 12. NIRBHOR — Bilingual AI Assistant
+
+A bilingual administrative AI agent supporting English, Bangla, and mixed-language interactions.
+
+- Conversational workflows for administrative tasks.
+- Versioned prompts and multilingual evaluation datasets.
+- Audit logging, notifications, cost tracking, and observability.
+
+**Stack:** ASP.NET Core MVC · C# · PostgreSQL · EF Core · Identity · SignalR · AI APIs
+
+[↗ View Repository](https://github.com/BigSmoke4/NIRBHOR-Bilingual-AI-Personal-Administrative-Agent)
+
+### 13. E-Commerce — ASP.NET MVC Application
+
+A responsive, database-driven e-commerce application built with a structured MVC architecture.
+
+- Product management and shopping-cart functionality.
+- Separated controllers, models, services, and views.
+- Database integration through Entity Framework and SQL Server.
+
+**Stack:** ASP.NET MVC · C# · Razor Views · Entity Framework · SQL Server
+
+[↗ View Repository](https://github.com/BigSmoke4/Responsive-Ecommerce-asp.net-MVC-razor-view)
+
+---
+
+## 05 / SKILLS & TECHNOLOGIES
+
+<div align="center">
+
+**Languages**
+
+![CSharp](https://img.shields.io/badge/C%23-68217A?style=flat-square&logo=csharp&logoColor=white)
+![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black)
+![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white)
+
+**Backend & Data**
+
+![ASP.NET Core](https://img.shields.io/badge/ASP.NET_Core-512BD4?style=flat-square&logo=dotnet&logoColor=white)
+![EF Core](https://img.shields.io/badge/Entity_Framework-512BD4?style=flat-square&logo=dotnet&logoColor=white)
+![SQL Server](https://img.shields.io/badge/SQL_Server-CC2927?style=flat-square&logo=microsoftsqlserver&logoColor=white)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-336791?style=flat-square&logo=postgresql&logoColor=white)
+![Redis](https://img.shields.io/badge/Redis-DC382D?style=flat-square&logo=redis&logoColor=white)
+![RabbitMQ](https://img.shields.io/badge/RabbitMQ-FF6600?style=flat-square&logo=rabbitmq&logoColor=white)
+![Kafka](https://img.shields.io/badge/Apache_Kafka-231F20?style=flat-square&logo=apachekafka&logoColor=white)
+
+**Engineering & AI**
+
+![Docker](https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=docker&logoColor=white)
+![Git](https://img.shields.io/badge/Git-F05032?style=flat-square&logo=git&logoColor=white)
+![Roslyn](https://img.shields.io/badge/Roslyn-512BD4?style=flat-square)
+![AI/ML](https://img.shields.io/badge/AI%2FML-FF6F00?style=flat-square)
+![REST APIs](https://img.shields.io/badge/REST_APIs-00599C?style=flat-square)
+![SignalR](https://img.shields.io/badge/SignalR-512BD4?style=flat-square)
+
+</div>
+
+---
+
+## 06 / PROFESSIONAL JOURNEY
+
+### Full-Stack Developer
+
+**Billing Master Software Limited (BMSL)** · Bangladesh
+
+`2025 — Present`
+
+- Developed 3+ ASP.NET MVC modules, improving internal processing efficiency by 30%.
+- Implemented CRUD and database features that reduced user-reported errors by 25%.
+- Optimized SQL queries, resulting in 20% faster data retrieval.
+
+### Executive Member
+
+**BRAC University Computer Club**
+
+`2022 — 2025`
+
+- Organized coding workshops and hackathons involving more than 100 students.
+- Collaborated with the web team on the club website and event registration systems.
+
+### General Member
+
+**Dhaka Residential Model College Computer Club**
+
+`2018 — 2020`
+
+- Participated in school-level computing and technology activities.
+
+---
+
+## 07 / EDUCATION
+
+| Qualification | Institution | Year |
+|---|---|---|
+| B.Sc. in Computer Science | BRAC University, Bangladesh | 2026 |
+| Higher Secondary Certificate | Dhaka Residential Model College | 2020 |
+| Secondary School Certificate | Ibn Taimiya School and College | 2018 |
+
+---
+
+## 08 / BEYOND THE CODE
+
+The portfolio is also a creative experiment in how software can feel.
+
+Its visual identity combines:
+
+- **Chewy & Mansalva** typography for a hand-drawn character.
+- **Textured purple backgrounds** and illustrated environmental details.
+- **Animated entrances** with staggered reveals, sliding transitions, and playful effects.
+- **Interactive project disks** that open detailed, browser-inspired project windows.
+- **A custom geographic visualization** built with D3.js and TopoJSON.
+- **Responsive layouts** and reduced-motion support for a more adaptable experience.
+
+The goal is simple: build software that is functional, thoughtfully engineered, and memorable to explore.
+
+---
+
+## 09 / CONNECT
+
+<div align="center">
+
+### Let's build something meaningful.
+
+I'm interested in full-stack engineering, backend architecture, distributed systems, developer tools, and applied AI.
+
+<br>
+
+[![Portfolio](https://img.shields.io/badge/Explore_My_Portfolio-6A4682?style=for-the-badge&logo=vercel&logoColor=white)](https://ahanafomiportfolio.vercel.app/)
+[![GitHub](https://img.shields.io/badge/Explore_My_Projects-242424?style=for-the-badge&logo=github&logoColor=white)](https://github.com/BigSmoke4)
+[![LinkedIn](https://img.shields.io/badge/Connect_on_LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/ahanaf-mokammel-omi-b15764268/)
+[![Email](https://img.shields.io/badge/Send_an_Email-EA4335?style=for-the-badge&logo=gmail&logoColor=white)](mailto:ahanafmo@gmail.com)
+
+</div>
+
+---
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!--                   THE FINAL DESTINATION                       -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+
+<div align="center">
+
+<img src="https://capsule-render.vercel.app/api?type=rect&color=6A4682&height=3&section=header" width="100%" alt="Purple divider">
+
+<br>
+
+### 🌍 A SMALL POINT ON A BIG WORLD
+
+*Every journey starts somewhere.*
+
+<br>
+
+<img src="map.png" alt="Illustrated world map with Ahanaf's location marked in Bangladesh" width="100%">
+
+<br>
+
+### 📍 Based in Bangladesh
+
+*Building for the world, from Bangladesh.*
+
+<br>
+
+<sub>Designed & developed by Ahanaf Mokammel Omi · © 2026</sub>
+
+<br><br>
+
+[![Back to Portfolio](https://img.shields.io/badge/RETURN_TO_PORTFOLIO-6A4682?style=for-the-badge&logo=vercel&logoColor=white)](https://ahanafomiportfolio.vercel.app/)
+
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!--                          END                                   -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
